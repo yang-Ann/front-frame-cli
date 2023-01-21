@@ -1,0 +1,38 @@
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+#BR#
+import { transformationTime } from "../utils.js";
+#BR#
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const rootDir = resolve(__dirname, "../logger", transformationTime("YYYY/MM/DD"));
+const imgErrDir = resolve(rootDir, "image");
+#BR#
+if (!fs.existsSync(rootDir)) {
+  fs.mkdirSync(rootDir, { recursive: true });
+}
+#BR#
+if (!fs.existsSync(imgErrDir)) {
+  fs.mkdirSync(imgErrDir, { recursive: true });
+}
+#BR#
+<% if (language === "TypeScript") { %>  
+type LoggerConfigType = {
+  rootDir: string,
+  errTrackPath: string,
+  operPath: string,
+  imgErrDir: string,
+}
+#BR#
+const loggerConfig: LoggerConfigType = {
+<% } else if (language === "JavaScript") { %>
+const loggerConfig = {
+<% } %>
+  rootDir,
+  imgErrDir,
+  errTrackPath: resolve(rootDir, "./errorStack.log"),
+  operPath: resolve(rootDir, "./operationalProcess.log"),
+};
+
+
+export default loggerConfig;

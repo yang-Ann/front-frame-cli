@@ -1,0 +1,33 @@
+import { defineComponent, ref } from "vue";
+#BR#
+export default defineComponent({
+	setup(props, { attrs, slots, emit, expose }) {
+		const count = ref(0);
+		const msg = ref("hello tsx");
+
+		return () => (
+			<div className="wrap"> 
+        <p>
+          {msg.value}
+      <% if (language === "TypeScript") { %>
+          <input 
+            type="text" 
+            value={msg.value} 
+            onInput={(e) => msg.value = (e.target as HTMLInputElement).value}
+          />
+        <% } else if (language === "JavaScript") { %>
+          <input type="text" value={msg.value} onInput={e => (msg.value = e.target.value)} />
+        <% } %>
+        </p>
+        
+        <button
+          id="box"
+          style={{ color: "red" }}
+          onClick={() => (count.value += 1)}
+        >
+          click me {count.value}
+        </button>
+      </div>
+		);
+	}
+});

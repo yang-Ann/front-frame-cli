@@ -1,0 +1,69 @@
+import fs from "node:fs";
+import loggerConfig from "./config/logger.js";
+
+// 时间格式 YYYY-MM-DD hh:mm:ss SSS毫秒 w星期
+function transformationTime(timeStr = "YYYY-MM-DD", time = new Date()) {
+	#BR#
+	const week = ["日", "一", "二", "三", "四", "五", "六"];
+<% if (language === "TypeScript") { %>  
+	const timeObj: Record<string, string> = {
+<% } else if (language === "JavaScript") { %>
+	const timeObj = {
+<% } %>
+		YYYY: time.getFullYear().toString(),
+		MM: getVal(time.getMonth() + 1),
+		DD: getVal(time.getDate()),
+		hh: getVal(time.getHours()),
+		mm: getVal(time.getMinutes()),
+		ss: getVal(time.getSeconds()),
+		SSS: getVal(time.getMilliseconds(), 3),
+		w: week[time.getDay()]
+	};
+	#BR#
+	let retStr = timeStr.slice();
+	for (const key in timeObj) {
+		if (Object.hasOwnProperty.call(timeObj, key)) {
+			const val = timeObj[key];
+			if (retStr.indexOf(key) !== -1) {
+				retStr = retStr.replace(key, val);
+			}
+		}
+	}
+	#BR#
+<% if (language === "TypeScript") { %>  
+	function getVal(val: string | number, n = 2, s = "0") {
+<% } else if (language === "JavaScript") { %>
+	function getVal(val, n = 2, s = "0") {
+<% } %>
+		return val.toString().padStart(n, s);
+	}
+
+	return retStr;
+}
+#BR#
+// 操作步骤写入
+<% if (language === "TypeScript") { %>  
+function writeOperInfo(msg: string, isEmpty = false) {
+<% } else if (language === "JavaScript") { %>
+function writeOperInfo(msg, isEmpty = false) {
+<% } %>
+  const { operPath } = loggerConfig;
+  #BR#
+  const d = transformationTime("YYYY-MM-DD hh:mm:ss");
+  if (isEmpty) {
+    fs.writeFileSync(operPath, msg);
+  } else {
+	<% if (language === "TypeScript") { %>  
+		fs.appendFile(operPath, `${d} ${msg}\r\n`, (err: NodeJS.ErrnoException | null) => {
+	<% } else if (language === "JavaScript") { %>
+		fs.appendFile(operPath, `${d} ${msg}\r\n`, err => {
+	<% } %>
+      if (err) console.error("文件写入失败");
+    });
+  }
+}
+#BR#
+export {
+  transformationTime,
+  writeOperInfo
+}

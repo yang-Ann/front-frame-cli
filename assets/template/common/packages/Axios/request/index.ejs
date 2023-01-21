@@ -1,0 +1,62 @@
+import axios from "axios";
+<% if (language === "TypeScript") { %>
+import type { AxiosRequestConfig, AxiosResponse } from "axios";
+<% } %>
+#BR#
+
+// https://axios-http.com/zh/docs/intro
+#BR#
+const instance = axios.create({
+  timeout: 30000,
+});
+
+#BR#
+<% if (language === "TypeScript") { %>
+instance.interceptors.request.use((config: AxiosRequestConfig /* TODO 类型不是很准 */) => {  
+<% } else if (language === "JavaScript") { %>
+instance.interceptors.request.use(config => {  
+<% } %>
+  console.log("request: ", config);
+  return config;
+
+  #BR#
+<% if (language === "TypeScript") { %>
+}, (error: any) => {
+<% } else if (language === "JavaScript") { %>
+}, error => {
+<% } %>
+
+  // TODO
+  console.log("request error: ", error);
+  return Promise.reject(error);
+});
+
+#BR#
+<% if (language === "TypeScript") { %>
+instance.interceptors.response.use((response: AxiosResponse /* TODO 类型不是很准 */) => {
+<% } else if (language === "JavaScript") { %>
+instance.interceptors.response.use(response => {
+<% } %>
+
+  const status = response.status || response.data.code;
+  if (status !== 200) {
+    console.log("!200", response);
+  } else if (status === 401) {
+    console.log("401", response);
+  } else {
+    console.log("response", response);
+  }
+
+  return response;
+  #BR#
+<% if (language === "TypeScript") { %>
+}, (error: any) => {
+<% } else if (language === "JavaScript") { %>
+}, error => {
+<% } %>
+  // TODO
+  console.log("response error: ", error);
+  return Promise.reject(error);
+});
+#BR#
+export default instance;

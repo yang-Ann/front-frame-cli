@@ -1,0 +1,50 @@
+// https://zh-hans.eslint.org/docs/latest/user-guide/getting-started
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:vue/vue3-essential",
+  <% if (language === "TypeScript") { %>  
+    "plugin:@typescript-eslint/recommended"
+  <% } %>
+  ],
+  overrides: [
+
+  ],
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+  <% if (language === "TypeScript") { %>  
+    parser: "@typescript-eslint/parser",
+  <% } %>
+    ecmaFeatures: {
+    <% if (packages.includes("JSX(TSX)")) { %>  
+      jsx: true
+    <% } %>
+    }
+  },
+  plugins: [
+    "vue",
+  <% if (language === "TypeScript") { %>  
+    "@typescript-eslint"
+  <% } %>
+  ],
+  // https://zh-hans.eslint.org/docs/latest/rules/
+  rules: {
+    "no-var": "error", // 禁止var声明变量
+    "no-alert": "warn", // 使用alert, confirm, prompt语句
+    "default-case": "error", // 在switch语句中需要有default语句
+  <% if (language === "TypeScript") { %>  
+    "@typescript-eslint/no-explicit-any": "off", // 可以声明类型为 any
+  <% } else if (language === "JavaScript") { %>
+    "no-unused-vars": "warn", // 没有使用的变量
+  <% } %>
+    "vue/multi-word-component-names": "off", // 组件名称不需要多个单词
+    "no-async-promise-executor": "off", // async 处理器函数可以是异步的
+  }
+}

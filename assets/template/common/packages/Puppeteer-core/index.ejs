@@ -1,0 +1,115 @@
+import { sep } from "node:path";
+import fs from "node:fs";
+import puppeteer from "puppeteer-core";
+<% if (language === "TypeScript") { %>
+import type { Browser, Page } from "puppeteer-core";
+<% } %>
+#BR#
+import { writeOperInfo, transformationTime } from "./utils.js";
+import loggerConfig from "./config/logger.js";
+import config from "./config/index.js";
+#BR#
+const { errTrackPath, imgErrDir, operPath } = loggerConfig;
+#BR#
+// https://zhaoqize.github.io/puppeteer-api-zh_CN/#/
+#BR#
+// 清空操作记录文件
+writeOperInfo("", true);
+#BR#
+<% if (language === "TypeScript") { %>
+let browser: Browser | null = null;
+let page: Page | null = null;
+<% } else if (language === "JavaScript") { %>
+let browser = null;
+let page = null;
+<% } %>
+#BR#
+(async () => {
+  try {
+    const start = Date.now();
+    #BR#
+    writeOperInfo("启动浏览器");
+    browser = await puppeteer.launch({
+      headless: false, // 关闭无头模式
+      executablePath: config.executablePath,
+    });
+    #BR#
+    writeOperInfo("打开空白页面");
+    page = await browser.newPage();
+    #BR#
+    // // 请求失败
+    // page.on("requestfailed", (request: puppeteer.HTTPRequest) => {
+    //   writeOperInfo(`请求失败了: ${request.url()} ${request.failure()?.errorText || ""}`);
+    // });
+    #BR#
+    // // 请求成功
+    // page.on("requestfinished", (request: puppeteer.HTTPRequest) => {
+    #BR#
+    // });
+    #BR#
+    // // 响应成功
+    // page.on("response", ((response: puppeteer.HTTPResponse) => {
+    #BR#
+    // }));
+    #BR#
+    page.setViewport({
+      width: 1680,
+      height: 1000,
+    });
+    #BR#
+    writeOperInfo("打开指定的网站");
+    await page.goto("http://www.baidu.com/", {
+      timeout: 300000, // 超时时间, ms
+      waitUntil: "networkidle0" // 0个网络超时(500ms)
+    });
+    #BR#
+    writeOperInfo("输入 hello world");
+    await page.type("#kw", "hello world", {
+      delay: 300
+    });
+    #BR#
+    writeOperInfo("点击搜索按钮");
+    await page.click("#su");
+    #BR#
+    writeOperInfo(`等待1500ms`);
+    await page.waitForTimeout(1500);
+    #BR#
+    writeOperInfo("截图");
+    await page.screenshot({ path: `${imgErrDir + sep + Date.now()}.png` });
+    #BR#
+    writeOperInfo("关闭浏览器");
+    await browser.close();
+    #BR#
+    fs.appendFileSync(operPath, "共用时: " + ((Date.now() - start)/60).toFixed(2) + "ms");
+    #BR#
+    // 等待1000ms
+    // await page.waitForTimeout(1000);
+    // 按下回车
+    // await page.keyboard.press("Enter");
+    // 等待该元素加载完成
+    // await page.waitForSelector(oneSelect);
+    #BR#
+    #BR#
+  } catch (error) {
+  <% if (language === "TypeScript") { %>  
+    if (error instanceof Error) {  
+  <% } %>
+      writeOperInfo(`发生错误, 请查看 ${errTrackPath}` + "\r\n".repeat(3));
+      // 报错图片路径
+      const imgErrPath = `${imgErrDir + sep + Date.now()}.png`;
+      // 记录错误栈信息
+      const d = transformationTime("YYYY-MM-DD hh:mm:ss");
+      fs.writeFileSync(errTrackPath, `${d} >>> ${imgErrPath}\r\n${error.stack}${"\r\n".repeat(3)}`);
+      #BR#
+      if (browser && page) {
+        // 保存网页为图片
+        await page.screenshot({ path: imgErrPath });
+        await browser.close();
+      } else {
+        console.log(error.message);
+      }
+  <% if (language === "TypeScript") { %>  
+    }
+  <% } %>
+  }
+})();

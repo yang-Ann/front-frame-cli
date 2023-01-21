@@ -1,0 +1,36 @@
+import { createApp } from "vue";
+import App from "./App.vue";
+<% if (packages.includes("Pinia")) { %>
+import { createPinia } from "pinia";
+<% } %>
+
+<% if (packages.includes("Vue-router")) { %>
+import router from "@/router";
+<% } %>
+
+<% if (packages.includes("Pinia")) { %>
+const pinia = createPinia();
+<% } %>
+
+<% if (packages.includes("Element-Plus")) { %>
+  #BR#
+import "element-plus/dist/index.css";
+<% } %>
+
+#BR#
+import "./index.css";
+
+#BR#
+const app = createApp(App);
+#BR#
+
+app
+
+<% if (packages.includes("Vue-router")) { %>
+  .use(router)
+<% } %>
+
+<% if (packages.includes("Pinia")) { %>
+  .use(pinia)
+<% } %>
+  .mount("#app");

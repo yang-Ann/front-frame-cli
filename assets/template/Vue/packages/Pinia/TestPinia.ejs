@@ -1,0 +1,38 @@
+<template>
+  <div class="wrap">
+    <div>
+      <img :src="logo" alt="pinia">
+    </div>
+    <div>
+      <p>{{testStore.msg}}</p>
+      <input type="text" v-model="text">
+    </div>
+  </div>
+</template>
+#BR#
+<% if (language === "TypeScript") { %>
+<script lang="ts" setup>
+<% } else if (language === "JavaScript") { %>
+<script setup>
+<% } %>
+#BR#
+  import { computed } from "vue";
+  import logo from "@/assets/pinia.svg"
+  import useTestPinia from "@/store/useTestPinia";
+  #BR#
+  const testStore = useTestPinia();
+  #BR#
+  const text = computed({
+    get() {
+      return testStore.msg;
+    },
+    <% if (language === "TypeScript") { %>
+    set(val: string) {
+    <% } else if (language === "JavaScript") { %>
+    set(val) {
+    <% } %>
+      testStore.setMsg(val);
+    }
+  });
+  #BR#
+</script>

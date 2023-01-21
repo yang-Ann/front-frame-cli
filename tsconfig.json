@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "declarationMap": false,
+    "skipLibCheck": true,
+    "watch": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+  ],
+  "files": [
+    "src/types/global.d.ts",
+  ],
+  "exclude": [
+    "dist/**/*",
+    "src/template/**/*",
+    "assets/**/*",
+    "aTestProject",
+  ]
+}

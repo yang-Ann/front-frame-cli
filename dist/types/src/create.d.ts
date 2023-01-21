@@ -1,0 +1,30 @@
+import { type Ora } from "ora";
+import PackageInfo from "./PackageInfo.js";
+import EjsFileMap from "./EjsFileMap.js";
+import PackageFileMap from "./PackageFileMap.js";
+export default class Create {
+    projectDir: string;
+    isCurrent: boolean;
+    lastDir: string;
+    templateParams: TemplateParamsType | null;
+    isCover: boolean;
+    startTime: number;
+    spinner: Ora;
+    ejsFileMap: EjsFileMap | null;
+    packageInfo: PackageInfo | null;
+    packageFileMap: PackageFileMap | null;
+    constructor(projectDir: string, isCurrent: boolean);
+    init(): void;
+    run(option: TemplateParamsType | void): Promise<void>;
+    normalizeProp(): void;
+    dirOver(): Promise<void>;
+    execCommand(): Promise<void>;
+    logAscll(): Promise<void>;
+    loading(): this;
+    initInstance(): this;
+    copyTemplate(): this;
+    copyPackageTemplate(): this;
+    renderEjsTemplate(): Promise<unknown>;
+    initGit(): Promise<void>;
+    cleanup(): void;
+}

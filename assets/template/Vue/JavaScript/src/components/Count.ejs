@@ -1,0 +1,22 @@
+<template>
+  <div class="wrap">
+    <div>
+      <img :src="logo" alt="vue" />
+    </div>
+    <div>
+      <p>{{ count }}</p>
+    <% if (packages.includes("Element-Plus")) { %>
+      <el-button type="primary" @click="count++">click me</el-button>
+    <% } else { %>
+      <button @click="count++">click me</button>
+    <% } %>
+    </div>
+  </div>
+</template>
+#BR#
+<script setup>
+  import { ref } from "vue";
+  import logo from "@/assets/vue.svg";
+  const count = ref(0);
+#BR#
+</script>

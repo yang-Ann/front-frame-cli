@@ -1,0 +1,61 @@
+{
+  "name": "front-frame-cli",
+  "version": "0.1.1",
+  "description": "一个简单的创建前端项目的cli",
+  "author": "an <331536495@qq.com> (https://ann-yang.gitee.io/note-sites/)",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "ff": "./dist/bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yang-Ann/front-frame-cli"
+  },
+  "homepage": "https://github.com/yang-Ann/front-frame-cli",
+  "bugs": {
+    "url": "https://github.com/yang-Ann/front-frame-cli/issues"
+  },
+  "keywords": [
+    "cli",
+    "template"
+  ],
+  "files": [
+    "assets/**/*",
+    "dist/**/*"
+  ],
+  "engines": {
+    "node": "^16.0.0 || >=18.0.0"
+  },
+  "scripts": {
+    "dev": "node ./dist/bin/index.js",
+    "dev:ts": "node --loader ts-node/esm ./bin/index.ts",
+    "eslint": "eslint . --ext .ts",
+    "test": "vitest",
+    "tc": "node ./dist/bin/testCreate.js"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "commander": "^9.4.0",
+    "ejs": "^3.1.8",
+    "figlet": "^1.5.2",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^9.1.2",
+    "log-symbols": "^5.1.0",
+    "ora": "^6.1.2",
+    "vitest": "^0.23.4",
+    "walkdir": "^0.4.1"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.1",
+    "@types/figlet": "^1.5.5",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^9.0.1",
+    "@types/node": "^18.7.19",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  }
+}

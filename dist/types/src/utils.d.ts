@@ -1,0 +1,17 @@
+import figlet from "figlet";
+declare const strAsAscll: (msg: string, option?: figlet.Options) => Promise<string>;
+declare const colorLog: (type: LogColorType, ...msg: string[]) => void;
+declare const walkdirOpator: (dir: string, filter?: ((p: string) => boolean | string) | undefined, ignoreDirs?: string[]) => Promise<string[] | Error>;
+declare const getEjsTemplate: (option: EjsOptionType) => Promise<void>;
+declare const delNullLine: (text: string, symbol?: string, isInsertBr?: boolean) => string;
+declare const createOptionDir: () => string;
+declare const getPresetConfig: () => Record<string, TemplateParamsType>;
+declare const getPersetConfigText: () => PersetConfigTextType[];
+declare const logPersetConfigText: () => void;
+declare const setPresetConfig: (key: string, value: TemplateParamsType) => void;
+declare const delPresetConfig: (key: string) => boolean;
+declare const isJSON: (text: string) => IsJSONRes;
+declare const objKeySort: (obj: ObjectType, flog?: sortType) => ObjectType<any>;
+declare const getExtByLang: (lang: LanguageType, isJsx?: boolean) => ExtType;
+declare const sleep: (delay: number) => Promise<unknown>;
+export { sleep, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, createOptionDir, getPresetConfig, getPersetConfigText, logPersetConfigText, setPresetConfig, delPresetConfig, delNullLine, isJSON, objKeySort, getExtByLang, };

@@ -1,0 +1,47 @@
+import { StrictMode } from "react";
+import Count from "@/components/Count";
+#BR#
+<% if (packages.includes("Reducx")) { %>
+import { Provider } from "react-redux";
+import store from "@/store/index";
+import TestRedux from "@/components/TestRedux";
+#BR#
+<% } %>
+
+<% if (packages.includes("React-router")) { %>
+import { BrowserRouter } from "react-router-dom";
+import Router from "@/components/Router";
+#BR#
+<% } %>
+
+function App() {
+	#BR#
+
+	return (
+		<StrictMode>
+    <% if (packages.includes("Reducx")) { %>
+			<Provider store={store}>
+    <% } %>
+				<div style={{display: "flex"}}>
+					<Count/>
+
+        <% if (packages.includes("Reducx")) { %>
+					<TestRedux/>
+        <% } %>
+
+        <% if (packages.includes("React-router")) { %>
+					<BrowserRouter>
+						<Router/>
+					</BrowserRouter>
+        <% } %>
+				</div>
+    <% if (packages.includes("Reducx")) { %>    
+			</Provider>
+    <% } %>
+		</StrictMode>
+	);
+}
+
+#BR#
+
+export default App;

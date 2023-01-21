@@ -1,0 +1,29 @@
+// https://redux.js.org/introduction/getting-started
+import { createSlice } from "@reduxjs/toolkit";
+<% if (language === "TypeScript") { %>
+import type { PayloadAction } from "@reduxjs/toolkit";
+<% } %>
+#BR#
+const counterSlice = createSlice({
+  name: "count",
+  initialState: {
+    msg: "hello redux"
+  },
+  reducers: {
+  <% if (language === "TypeScript") { %>
+    setMsg: (state, action: PayloadAction<string>) => {
+  <% } else if (language === "JavaScript") { %>
+    setMsg: (state, action) => {
+  <% } %>
+      console.log("action: ", action);
+      state.msg = action.payload;
+    },
+  }
+});
+#BR#
+const { setMsg } = counterSlice.actions;
+#BR#
+export {
+  counterSlice,
+  setMsg
+}

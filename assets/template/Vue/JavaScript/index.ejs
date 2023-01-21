@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= projectName %></title>
+  </head>
+  <body>
+    <div id="app"></div>
+  <% if (language === "TypeScript") { %>
+    <script type="module" src="/src/main.ts"></script>
+  <% } else if (language === "JavaScript") { %>
+    <script type="module" src="/src/main.js"></script>
+  <% } %>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<template>
+  <div style="display: flex;">
+    <Count />
+<% if (packages.includes("Pinia")) { %>
+    <TestPinia />
+<% } %>
+<% if (packages.includes("Vue-router")) { %>
+    <RouterView />
+<% } %>
+<% if (packages.includes("JSX(TSX)")) { %>
+    <TestTsx />
+<% } %>
+</div>
+</template>
+#BR#
+<script lang="ts" setup>
+  import { ref } from "vue";
+<% if (packages.includes("JSX(TSX)")) { %>
+  // TODO unplugin-auto-import 无法自动导入 jsx/tsx 的文件
+  import TestTsx from "@/components/TestTsx";
+<% } %>
+#BR#
+</script>
+#BR#
+<% if (packages.includes("Sass")) { %>
+<style lang="scss">
+<% } else { %>
+<style>
+<% } %>
+
+.wrap {
+  width: 120px;
+  height: 180px;
+  text-align: center;
+  border: 1px solid #41b883;
+  border-radius: 4px;
+  padding: 8px;
+  margin-right: 10px;
+}
+#BR#
+img {
+  width: 50px;
+}
+#BR#
+input {
+  width: calc(100% - 10px);
+}
+</style>

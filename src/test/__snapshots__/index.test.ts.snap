@@ -1,0 +1,148 @@
+// Vitest Snapshot v1
+
+exports[`config > getPackagesOptionByFrame > Native 可选依赖 1`] = `
+[
+  {
+    "name": "Axios",
+  },
+  {
+    "name": "Chalk",
+  },
+  {
+    "name": "Dayjs",
+  },
+  {
+    "checked": true,
+    "name": "Eslint",
+  },
+  {
+    "checked": true,
+    "name": "Fs-extra",
+  },
+  {
+    "name": "Lodash",
+  },
+  {
+    "name": "Log-symbols",
+  },
+  {
+    "name": "Ora",
+  },
+  {
+    "name": "Prettier",
+  },
+  {
+    "name": "Puppeteer-core",
+  },
+  {
+    "name": "Rollup",
+  },
+  {
+    "checked": true,
+    "name": "Vitest",
+  },
+]
+`;
+
+exports[`config > getPackagesOptionByFrame > React 可选依赖 1`] = `
+[
+  {
+    "checked": true,
+    "name": "Ant-Design",
+  },
+  {
+    "name": "Axios",
+  },
+  {
+    "name": "Dayjs",
+  },
+  {
+    "checked": true,
+    "name": "Eslint",
+  },
+  {
+    "name": "Lodash",
+  },
+  {
+    "name": "Prettier",
+  },
+  {
+    "name": "React-router",
+  },
+  {
+    "name": "React-use",
+  },
+  {
+    "name": "Reducx",
+  },
+  {
+    "name": "Tailwind CSS",
+  },
+]
+`;
+
+exports[`config > getPackagesOptionByFrame > Vue 可选依赖 1`] = `
+[
+  {
+    "name": "Axios",
+  },
+  {
+    "name": "Dayjs",
+  },
+  {
+    "checked": true,
+    "name": "Element-Plus",
+  },
+  {
+    "checked": true,
+    "name": "Eslint",
+  },
+  {
+    "name": "JSX(TSX)",
+  },
+  {
+    "name": "Lodash",
+  },
+  {
+    "name": "Pinia",
+  },
+  {
+    "name": "Prettier",
+  },
+  {
+    "checked": true,
+    "name": "Sass",
+  },
+  {
+    "name": "Tailwind CSS",
+  },
+  {
+    "name": "Vue-router",
+  },
+  {
+    "name": "Vueuse",
+  },
+]
+`;
+
+exports[`utils > strAsAscll > 打印 ASCLL 1`] = `
+"   ____                   __    _   __           __      __    _   
+ .' __ \\\\                 [  |  (_) [  |         / /     [  |  (_)  
+/ .'  \\\\ | ,--.   _ .--.   | |  __   | |.--.    / /.---.  | |  __   
+| | (_/ |\`'_\\\\ : [ \`.-. |  | | [  |  | '/'\`\\\\ \\\\ / // /'\`\\\\] | | [  |  
+\\\\ \`.__.'\\\\// | |, | | | |  | |  | |  |  \\\\__/ |/ / | \\\\__.  | |  | |  
+ \`.___ .'\\\\'-;__/[___||__][___][___][__;.__.'/_/  '.___.'[___][___] 
+                                                                   "
+`;
+
+exports[`utils > walkdirOpator > walkdirOpator 读取 ejs 文件信息 1`] = `
+[
+  "D:/project/cli/assets/template/Vue/TypeScript/index.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/package.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/vite.config.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/src/App.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/src/main.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/src/index.ejs",
+  "D:/project/cli/assets/template/Vue/TypeScript/src/components/Count.ejs",
+]
+`;

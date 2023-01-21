@@ -1,0 +1,15 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+<% if (packages.includes("Ant-Design")) { %>
+#BR#
+import "antd/dist/reset.css";
+<% } %>
+#BR#
+import "./index.css";
+#BR#
+createRoot(document.getElementById("root")).render(
+	<StrictMode>
+		<App />
+	</StrictMode>
+);

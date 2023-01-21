@@ -1,0 +1,32 @@
+import { createRouter, createWebHashHistory } from "vue-router";
+#BR#
+// https://router.vuejs.org/zh/introduction.html
+const router = createRouter({
+	history: createWebHashHistory(),
+	routes: [
+		{
+			path: "/count",
+			name: "Count",
+			component: () => import("@/components/Count.vue")
+		},
+	<% if (packages.includes("Pinia")) { %>
+		{
+			path: "/testPinia",
+			name: "TestPinia",
+			component: () => import("@/components/TestPinia.vue")
+		},
+	<% } %>
+		{
+			path: "/",
+			redirect: { name: "Count" }
+		},
+		{
+			path: "/:pathMatch(.*)",
+			name: "NotFound",
+			component: () => import("@/components/NotFound.vue")
+		}
+	]
+});
+
+#BR#
+export default router;

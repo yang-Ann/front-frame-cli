@@ -1,0 +1,43 @@
+{
+	"name": "<%= projectName %>",
+	"version": "0.0.1",
+
+	<% if (language === "TypeScript") { %>
+		"type": "module",
+		"types": "src/types/types.d.ts",
+	<% } %>
+
+	<% if (language === "JavaScript") { %>
+		"type": "module",
+	<% } %>
+
+	"description": "",
+
+	<% if (packages.includes("Rollup")) { %>
+		"main": "lib/bundle.cjs.js",
+		"jsnext:main": "lib/bundle.esm.js",
+		"module": "lib/bundle.esm.js",
+		"browser": "lib/bundle.browser.js",
+		"amd": "lib/bundle.amd.js",
+		"homepage": "",
+		"bugs": {},
+		"keywords": [
+
+		],
+		"author": {
+			"name": "",
+			"email": "",
+			"url": ""
+		},
+		"repository": {
+			"type": "git",
+			"url": ""
+		},
+		"files": [
+			"lib",
+			"src"
+		],
+	<% } %>
+
+	"license": "MIT"
+}

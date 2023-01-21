@@ -1,0 +1,21 @@
+<template>
+  <div>
+    <div>
+      <router-view/>
+    </div>
+    <div style="text-align: center;">
+      <router-link to="/testPinia">TestPinia</router-link>
+      &nbsp;
+      <router-link to="/count">Count</router-link>
+    </div>
+  </div>
+</template>
+#BR#
+<% if (language === "TypeScript") { %>
+<script lang="ts" setup>
+<% } else if (language === "JavaScript") { %>
+<script setup>
+<% } %>
+  import { ref } from "vue";
+  #BR#
+</script>

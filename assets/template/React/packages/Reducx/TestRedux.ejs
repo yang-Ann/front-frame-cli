@@ -1,0 +1,37 @@
+import logo from "@/assets/react-redux.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { setMsg } from "@/store/slices/counterRedux";
+<% if (language === "TypeScript") { %>  
+import type { RootState } from "@/store";
+<% } %>
+
+
+#BR#
+const TestRedux = () => {
+  <% if (language === "TypeScript") { %>  
+  const { counter } = useSelector((state: RootState) => state);
+  <% } else if (language === "JavaScript") { %>
+  const { counter } = useSelector(state => state);
+  <% } %>
+  const dispath = useDispatch();
+  #BR#
+  return (
+    <div className="wrap">
+      <div>
+        <img src={logo} alt="react-redux" style={{backgroundColor: "#000"}}/>
+      </div>
+      <p>{counter.msg}</p>
+      <input 
+        type="text" 
+        value={counter.msg} 
+      <% if (language === "TypeScript") { %>
+        onInput={(e) => dispath(setMsg((e.target as HTMLInputElement).value))}
+      <% } else if (language === "JavaScript") { %>
+        onInput={(e) => dispath(setMsg(e.target.value))}
+      <% } %>
+      />
+    </div>
+  )
+};
+#BR#
+export default TestRedux;

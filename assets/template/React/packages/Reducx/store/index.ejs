@@ -1,0 +1,15 @@
+import { configureStore } from "@reduxjs/toolkit";
+import { counterSlice } from "@/store/slices/counterRedux";
+#BR#
+const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer
+  },
+  devTools: true
+});
+#BR#
+<% if (language === "TypeScript") { %>
+export type RootState = ReturnType<typeof store.getState>;
+<% } %>
+#BR#
+export default store;

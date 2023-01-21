@@ -1,0 +1,29 @@
+import { useState } from "react";
+<% if (packages.includes("Ant-Design")) { %>
+import { Button } from "antd";
+<% } %>
+import logo from "@/assets/react.svg";
+#BR#
+const Count = () => {
+	const [count, setCount] = useState(0);
+	#BR#
+	return (
+		<>
+			<div className="wrap">
+				<div>
+					<img src={logo} alt="react"/>
+				</div>
+				<div>
+					<p>{count}</p>
+				<% if (packages.includes("Ant-Design")) { %>
+					<Button type="primary" onClick={() => setCount(count + 1)}>click me</Button>
+				<% } else { %>
+					<button onClick={() => setCount(count + 1)}>click me</button>
+				<% } %>
+				</div>
+			</div>
+		</>
+	);
+};
+#BR#
+export default Count;

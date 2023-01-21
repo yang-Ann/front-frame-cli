@@ -1,0 +1,18 @@
+import routes from "@/router/index";
+import { useRoutes, Link } from "react-router-dom";
+
+const Router = () => {
+  const element = useRoutes(routes);
+  return (
+    <div style={{display: "flex", flexDirection: "column"}}>
+      <div>{element}</div>
+      <div style={{textAlign: "center", fontSize: 14}}>
+        <Link to="/testRedux">TestRedux</Link>
+        &nbsp;
+        <Link to="/count">Count</Link>
+      </div>
+    </div>
+  );
+};
+
+export default Router;

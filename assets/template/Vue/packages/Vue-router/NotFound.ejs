@@ -1,0 +1,15 @@
+<template>
+  <h2>{{msg}}</h2>
+</template>
+
+#BR#
+<% if (language === "TypeScript") { %>
+<script lang="ts" setup>
+<% } else if (language === "JavaScript") { %>
+<script setup>
+<% } %>
+
+  import { ref } from "vue";
+  const msg = ref("Not Found");
+  #BR#
+</script>

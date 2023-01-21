@@ -1,0 +1,65 @@
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
+
+<% if (packages.includes("JSX(TSX)")) { %>
+import vueJsx from "@vitejs/plugin-vue-jsx";
+<% } %>
+#BR#
+// https://www.npmjs.com/package/unplugin-vue-components
+import Components from "unplugin-vue-components/vite";
+#BR#
+// https://www.npmjs.com/package/unplugin-auto-import
+import AutoImport from "unplugin-auto-import/vite";
+#BR#
+<% if (packages.includes("Element-Plus")) { %>
+// https://element-plus.gitee.io/zh-CN/guide/quickstart.html#%E6%8C%89%E9%9C%80%E5%AF%BC%E5%85%A5
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+<% } %>
+
+#BR#
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+#BR#
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+
+  <% if (packages.includes("JSX(TSX)")) { %>
+    vueJsx(),
+  <% } %>
+
+    Components({
+			dirs: ["src/components"],
+    <% if (packages.includes("Element-Plus")) { %>
+      resolvers: [ElementPlusResolver()]
+    <% } %>
+		}),
+
+  <% if (packages.includes("Element-Plus")) { %>
+    AutoImport({
+      resolvers: [ElementPlusResolver()] 
+    }),
+  <% } else { %>
+    AutoImport(),
+  <% }%>
+  ],
+  base: "./",
+  server: {
+    open: true,
+    host: true,
+  },
+  resolve: {
+    alias: [
+      {
+        find: "@",
+        replacement: resolve(__dirname, "src")
+      },
+      {
+        find: "root",
+        replacement: resolve(__dirname, "./")
+      }
+    ]
+  },
+})

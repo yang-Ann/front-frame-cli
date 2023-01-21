@@ -1,0 +1,31 @@
+<% if (language === "TypeScript") { %>
+import type { RouteObject } from "react-router-dom";
+<% } %>
+import Count from "@/components/Count";
+import TestRedux from "@/components/TestRedux";
+import NotFound from "@/components/NotFound";
+#BR#
+<% if (language === "TypeScript") { %>
+const routes: RouteObject[] = [
+<% } else if (language === "JavaScript") { %>
+const routes = [
+<% } %>
+  {
+    path: "/",
+    element: <Count />,
+  },
+  {
+    path: "/count",
+    element: <Count />,
+  },
+  {
+    path: "/testRedux",
+    element: <TestRedux />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+];
+#BR#
+export default routes;

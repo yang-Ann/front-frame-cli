@@ -1,0 +1,21 @@
+import { defineStore } from "pinia";
+#BR#
+// https://pinia.vuejs.org/zh/
+const useTestPinia = defineStore("testStore", {
+  state: () => {
+    return {
+      msg: "hello pinia"
+    };
+  },
+  actions: {
+    <% if (language === "TypeScript") { %>
+    setMsg(val: string) {
+    <% } else if (language === "JavaScript") { %>
+    setMsg(val) {
+    <% } %>
+      this.msg = val;
+    }
+  }
+});
+#BR#
+export default useTestPinia;
