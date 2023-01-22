@@ -20,3 +20,4 @@ ff ls
 ff del presetName
 ```
 
+> 如果需要额外向`package.json`中添加一些字段可以新建`~/.front-frame-cli/margePackage.json`文件, 里面的键值对会被合并到模板项目的`package.json`中
