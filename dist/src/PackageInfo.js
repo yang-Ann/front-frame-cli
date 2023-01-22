@@ -1,4 +1,5 @@
 import { devDependenciesInfo, scriptInfo, getIgnoreContent } from "./config/packageInfo.js";
+import { isChildObject } from "./utils/exports.js";
 export default class PackageInfo {
     language;
     frame;
@@ -47,7 +48,7 @@ export default class PackageInfo {
             else if (value instanceof Object) {
                 // 选中的依赖
                 if (packages.includes(key) || key === language || key === buildTool) {
-                    if (this.isChild(value)) {
+                    if (isChildObject(value)) {
                         // 还有还有子依赖则解析
                         const res = parse(value);
                         result = { ...result, ...res };
@@ -73,20 +74,6 @@ export default class PackageInfo {
             };
         }
         return result;
-    }
-    // 是否还有子依赖
-    isChild(obj) {
-        let flog = false;
-        for (const key in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                const value = obj[key];
-                if (value instanceof Object) {
-                    flog = true;
-                    break;
-                }
-            }
-        }
-        return flog;
     }
     // 解析依赖(区分生产依赖和运行依赖)
     parseDependencies() {

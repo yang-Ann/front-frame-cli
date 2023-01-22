@@ -1,5 +1,4 @@
 // 测试数据
-
 import PackageInfo from "../PackageInfo.js";
 
 const vuePackageInstance = new PackageInfo("TypeScript", "Vue", [

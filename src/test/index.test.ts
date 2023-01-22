@@ -1,20 +1,26 @@
 // https://cn.vitest.dev/guide/
 import { test, expect, describe } from "vitest";
 import { resolve } from "node:path";
-import { objKeySort, strAsAscll, getExtByLang, walkdirOpator } from "../utils/exports.js";
+import {
+  objKeySort,
+  strAsAscll,
+  getExtByLang,
+  walkdirOpator,
+  isChildObject,
+} from "../utils/exports.js";
 import pkg from "../../package.json";
 import { getPackagesOptionByFrame } from "../config/command.js";
 
 describe("utils", () => {
-	test("strAsAscll", async () => {
-		const res = await strAsAscll(pkg.name);
-		expect(res).toMatchSnapshot("打印 ASCLL");
-	}, 3000);
+  test("strAsAscll", async () => {
+    const res = await strAsAscll(pkg.name);
+    expect(res).toMatchSnapshot("打印 ASCLL");
+  }, 3000);
 
   test("getExtByLang", () => {
     expect(getExtByLang("JavaScript")).toMatchInlineSnapshot('".js"');
     expect(getExtByLang("JavaScript", true)).toMatchInlineSnapshot('".jsx"');
-    
+
     expect(getExtByLang("TypeScript")).toMatchInlineSnapshot('".ts"');
     expect(getExtByLang("TypeScript", true)).toMatchInlineSnapshot('".tsx"');
   });
@@ -26,6 +32,16 @@ describe("utils", () => {
       return p.endsWith(".ejs") ? p.replace(RE, "/") : false;
     });
     expect(files).toMatchSnapshot("walkdirOpator 读取 ejs 文件信息");
+  });
+
+  test("isChildObject", () => {
+    const obj = {
+      Eslint: {
+        // ...
+      }
+    };
+
+    expect(isChildObject(obj)).toMatchInlineSnapshot('true');
   });
 });
 

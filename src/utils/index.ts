@@ -116,22 +116,6 @@ const delNullLine = (text: string, symbol = "#BR#", isInsertBr = true): string =
 	return fullText;
 }
 
-// 判断是否可以转换为 json
-const isJSON = (text: string): IsJSONRes => {
-	const result = {
-		json: null,
-		flog: true,
-	};
-
-	try {
-		result.json = JSON.parse(text);
-	} catch (error) {
-		result.flog = false;
-	}
-
-	return result;
-}
-
 // 对象key排序
 const objKeySort = (obj: ObjectType, flog: sortType = "ASC") => {
 	const result: ObjectType = {};
@@ -152,6 +136,38 @@ const getExtByLang = (lang: LanguageType, isJsx: boolean = false): ExtType => {
 	return (result + (isJsx ? "x" : "")) as ExtType;
 }
 
+
+// 判断是否可以转换为 json
+const isJSON = (text: string): IsJSONRes => {
+	const result = {
+		json: null,
+		flog: true,
+	};
+
+	try {
+		result.json = JSON.parse(text);
+	} catch (error) {
+		result.flog = false;
+	}
+
+	return result;
+}
+
+// 子属性中是否还有对象
+const isChildObject = (obj: ObjectType) : boolean => {
+	let flog = false;
+	for (const key in obj) {
+		if (Object.prototype.hasOwnProperty.call(obj, key)) {
+			const value = obj[key];
+			if (value instanceof Object) {
+				flog = true;
+				break
+			}
+		}
+	}
+	return flog;
+}
+
 export {
 	getDirname,
 	strAsAscll,
@@ -159,7 +175,8 @@ export {
 	walkdirOpator,
 	getEjsTemplate,
 	delNullLine,
-	isJSON,
 	objKeySort,
 	getExtByLang,
+	isJSON,
+	isChildObject,
 };

@@ -25,6 +25,7 @@ export default class Create {
     copyTemplate(): this;
     copyPackageTemplate(): this;
     renderEjsTemplate(): Promise<unknown>;
+    margePackage(): this;
     initGit(): Promise<void>;
     cleanup(): void;
 }

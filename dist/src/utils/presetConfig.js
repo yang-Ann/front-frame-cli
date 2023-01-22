@@ -2,8 +2,9 @@ import path from "node:path";
 import fs from "fs-extra";
 import chalk from "chalk";
 import config from "../config/index.js";
-import { colorLog } from "./index.js";
-const optionDir = path.resolve(process.env.USERPROFILE || "", config.configDir);
+import { colorLog, getDirname } from "./exports.js";
+const __dirname = getDirname(import.meta.url);
+const optionDir = path.resolve(process.env.USERPROFILE || __dirname, config.configDir);
 const presetPath = path.resolve(optionDir, config.presetFile);
 // 创建配置目录
 const createOptionDir = () => {
@@ -69,7 +70,7 @@ const setPresetConfig = (key, value) => {
         console.log(`更新了 ${chalk.bold.underline(key)} 预设配置`);
     }
     presetAllOption[key] = value;
-    fs.writeJSONSync(presetPath, presetAllOption, { spaces: "\t" });
+    fs.writeJSONSync(presetPath, presetAllOption, { spaces: "  " });
 };
 // 删除预设
 const delPresetConfig = (key) => {
@@ -78,7 +79,7 @@ const delPresetConfig = (key) => {
     if (preset[key]) {
         result = true;
         delete preset[key];
-        fs.writeJSONSync(presetPath, preset, { spaces: "\t" });
+        fs.writeJSONSync(presetPath, preset, { spaces: "  " });
     }
     return result;
 };

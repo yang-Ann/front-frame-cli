@@ -36,7 +36,6 @@ export default class PackageInfo {
     };
     getFrameAllPackages(): any;
     parseAllDependencies(): ObjectType<any>;
-    isChild(obj: ObjectType): boolean;
     parseDependencies(): {
         devDependencies: ObjectType<any>;
         dependencies: ObjectType<any>;

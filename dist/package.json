@@ -6,8 +6,7 @@
     "license": "MIT",
     "type": "module",
     "bin": {
-        "ff": "./dist/bin/index.js",
-        "tff": "./dist/bin/index.js"
+        "ff": "./dist/bin/index.js"
     },
     "repository": {
         "type": "git",
@@ -42,6 +41,7 @@
         "figlet": "^1.5.2",
         "fs-extra": "^10.1.0",
         "inquirer": "^9.1.2",
+        "lodash.merge": "^4.6.2",
         "log-symbols": "^5.1.0",
         "ora": "^6.1.2",
         "vitest": "^0.23.4",
@@ -52,6 +52,7 @@
         "@types/figlet": "^1.5.5",
         "@types/fs-extra": "^9.0.13",
         "@types/inquirer": "^9.0.1",
+        "@types/lodash.merge": "^4.6.7",
         "@types/node": "^18.7.19",
         "@typescript-eslint/eslint-plugin": "^5.48.0",
         "@typescript-eslint/parser": "^5.48.0",

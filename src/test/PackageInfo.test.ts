@@ -19,16 +19,6 @@ describe("parseAllDependencies", () => {
   });
 });
 
-test("isChild", () => {
-  const obj = {
-    Eslint: {
-      // ...
-    }
-  };
-
-  expect(vuePackageInstance.isChild(obj)).toBe(true);
-});
-
 describe("parseDependencies", () => {
   test("Vue", () => {
     expect(vuePackageInstance.parseDependencies()).toMatchSnapshot("Vue 解析依赖");

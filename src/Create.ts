@@ -5,10 +5,12 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 import fs from "fs-extra";
 import ora, { type Ora } from "ora";
+import merge from "lodash.merge";
 
 import PackageInfo from "./PackageInfo.js";
 import EjsFileMap from "./EjsFileMap.js";
 import PackageFileMap from "./PackageFileMap.js";
+import config from "./config/index.js";
 import { execCommandOption } from "./config/command.js";
 
 import {
@@ -79,7 +81,7 @@ export default class Create {
 				.copyPackageTemplate()
 				.renderEjsTemplate();
 
-			await this.initGit();
+			await	this.initGit();
 
 		} catch (error: unknown) {
 			if (error instanceof Error) {
@@ -324,12 +326,30 @@ export default class Create {
 								if (flog && json) {
 									// 添加依赖和命令
 									if (this.packageInfo) {
+										const { configDir, margePackageFile } = config;
+										const margePackageFilePath = path.resolve(
+											process.env.USERPROFILE || __dirname,
+											configDir, margePackageFile
+										);
+										const margePackage = fs.readJSONSync(margePackageFilePath);
+										const pack = merge(json, margePackage);
 										const { dependencies, devDependencies } = this.packageInfo.parseDependencies();
-										json.scripts = objKeySort(this.packageInfo.parseScripts());
-										json.dependencies = objKeySort(dependencies);
-										json.devDependencies = objKeySort(devDependencies);
+										pack.scripts = merge(
+											pack.scripts || {},
+											objKeySort(this.packageInfo.parseScripts())
+										);
+										pack.dependencies = merge(
+											pack.dependencies || {},
+											objKeySort(dependencies)
+										);
+										pack.devDependencies = merge(
+											pack.devDependencies || {},
+											objKeySort(devDependencies)
+										);
+										result = JSON.stringify(pack, null, 2);
+									} else {
+										throw new Error("没有初始化 PackageInfo 实例");
 									}
-									result = JSON.stringify(json, null, 2);
 								} else {
 									console.warn("json 转换失败了 ->", generateFileName);
 								}
@@ -348,6 +368,23 @@ export default class Create {
 					.catch(reject);
 			}
 		});
+	}
+
+	// 合并 package.json 配置
+	public margePackage() {
+		const { configDir, margePackageFile } = config;
+		const margePackageFilePath = path.resolve(
+			process.env.USERPROFILE || __dirname,
+			configDir, margePackageFile
+		);
+		const packagePath = path.resolve(this.projectDir, "package.json");
+		if (fs.existsSync(margePackageFilePath)) {
+			const pack = fs.readJSONSync(packagePath);
+			const margePackage = fs.readJSONSync(margePackageFilePath);
+			const obj = merge(pack, margePackage);
+			fs.writeJSONSync(packagePath, obj, { spaces: "  " });
+		}
+		return this;
 	}
 
 	// 初始化 git
