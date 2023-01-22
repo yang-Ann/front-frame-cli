@@ -1,7 +1,7 @@
 // https://cn.vitest.dev/guide/
 import { test, expect, describe } from "vitest";
 import { resolve } from "node:path";
-import { objKeySort, strAsAscll, getExtByLang, walkdirOpator } from "../utils.js";
+import { objKeySort, strAsAscll, getExtByLang, walkdirOpator } from "../utils/exports.js";
 import pkg from "../../package.json";
 import { getPackagesOptionByFrame } from "../config/command.js";
 describe("utils", () => {

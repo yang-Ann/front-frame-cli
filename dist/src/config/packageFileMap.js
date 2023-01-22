@@ -1,4 +1,4 @@
-import { getExtByLang } from "../utils.js";
+import { getExtByLang } from "../utils/exports.js";
 import { defineConfigPackageFileMap } from "../types/defineConfig.js";
 export default defineConfigPackageFileMap({
     // packages 文件映射(用于删除对应包的示例文件)

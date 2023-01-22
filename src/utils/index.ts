@@ -1,16 +1,17 @@
 import figlet from "figlet";
 import chalk from "chalk";
 import fs from "fs-extra";
-import path from "node:path";
-import walkdir from "walkdir";
 import { EOL } from "node:os";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
-import config from "./config/index.js";
+
+import walkdir from "walkdir";
 import ejs from "ejs";
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-const optionDir = path.resolve(__dirname, process.env.USERPROFILE || "", config.configDir);
-const presetPath = path.resolve(optionDir, config.presetFile);
+
+const getDirname = (url: string): string => {
+	return fileURLToPath(new URL(".", url));
+}
 
 // 转换为 ASCII
 const strAsAscll = (msg: string, option?: figlet.Options): Promise<string> => {
@@ -115,89 +116,6 @@ const delNullLine = (text: string, symbol = "#BR#", isInsertBr = true): string =
 	return fullText;
 }
 
-// 创建配置目录
-const createOptionDir = (): string => {
-	if (!fs.existsSync(optionDir)) fs.mkdirSync(optionDir);
-	return optionDir;
-};
-
-// 获取预设配置
-const getPresetConfig = (): Record<string, TemplateParamsType> => {
-	const optionDir = createOptionDir();
-	const presetPath = path.resolve(optionDir, config.presetFile);
-	type resultType = Record<string, TemplateParamsType>;
-	let result: resultType | void;
-	if (!fs.existsSync(presetPath)) {
-		fs.writeJSONSync(presetPath, {});
-		result = {};
-	} else {
-		try {
-			result = fs.readJSONSync(presetPath) || {};
-		} catch (error: unknown) {
-			if (error instanceof Error) {
-				colorLog("red", `读取预设配置错误 ---> ${error.message}`);
-				result = {};
-			}
-		}
-	}
-	return (result as resultType);
-};
-
-
-// 获取预设提示(格式样式)
-const getPersetConfigText = (): PersetConfigTextType[] => {
-	let result: PersetConfigTextType[] = [];
-	const presetAllOption = getPresetConfig();
-	const presetAllOptionKeys = Object.keys(presetAllOption);
-	if (presetAllOptionKeys.length) {
-		result = presetAllOptionKeys.map(key => {
-			const item = presetAllOption[key];
-			return {
-				name: key,
-				language: chalk.bold.underline(item.language),
-				packages: item.packages.map(e => chalk.bold.underline(e)),
-				git: chalk.bold.underline(item.git)
-			};
-		});
-	}
-	return result;
-}
-
-// 打印预设内容
-const logPersetConfigText = () => {
-	const texts = getPersetConfigText();
-	if (texts.length) {
-		console.log(`\n从 ${optionDir} 中读取到的预设有: \n`);
-		texts.map((e, i) => {
-			const { name, language, packages, git } = e;
-			console.log(`\t${chalk.hex("#2ebc41").bold(name)}: language: ${language}, packages: [${packages.join(", ")}], git: ${git}\n`);
-		});
-	}
-}
-
-// 设置预设
-const setPresetConfig = (key: string, value: TemplateParamsType) => {
-	const presetAllOption = getPresetConfig();
-	if (presetAllOption[key]) {
-		console.log(`更新了 ${chalk.bold.underline(key)} 预设配置`);
-	}
-	presetAllOption[key] = value;
-	fs.writeJSONSync(presetPath, presetAllOption, { spaces: "\t" });
-};
-
-// 删除预设
-const delPresetConfig = (key: string): boolean => {
-	let result = false;
-	const preset = getPresetConfig();
-	if (preset[key]) {
-		result = true;
-		delete preset[key];
-		fs.writeJSONSync(presetPath, preset, { spaces: "\t" });
-	}
-	
-	return result;
-};
-
 // 判断是否可以转换为 json
 const isJSON = (text: string): IsJSONRes => {
 	const result = {
@@ -234,21 +152,12 @@ const getExtByLang = (lang: LanguageType, isJsx: boolean = false): ExtType => {
 	return (result + (isJsx ? "x" : "")) as ExtType;
 }
 
-// async 阻塞函数
-const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
-
 export {
-	sleep,
+	getDirname,
 	strAsAscll,
 	colorLog,
 	walkdirOpator,
 	getEjsTemplate,
-	createOptionDir,
-	getPresetConfig,
-	getPersetConfigText,
-	logPersetConfigText,
-	setPresetConfig,
-	delPresetConfig,
 	delNullLine,
 	isJSON,
 	objKeySort,

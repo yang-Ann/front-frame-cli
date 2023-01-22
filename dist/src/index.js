@@ -4,12 +4,15 @@ import logSymbols from "log-symbols";
 import inquirer from "inquirer";
 import fs from "fs-extra";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import Create from "./Create.js";
-import { colorLog, getPresetConfig, getPersetConfigText, logPersetConfigText, delPresetConfig } from "./utils.js";
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+import { 
+// index
+colorLog, getDirname, 
+// presetConfig
+getPresetConfig, getPersetConfigText, logPersetConfigText, delPresetConfig } from "./utils/exports.js";
 const { blue, yellow } = chalk;
 const program = new Command();
+const __dirname = getDirname(import.meta.url);
 const pkg = fs.readJsonSync(path.resolve(__dirname, "../../package.json"));
 program
     .name("ff")

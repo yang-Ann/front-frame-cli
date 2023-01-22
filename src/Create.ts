@@ -1,6 +1,5 @@
 import path from "node:path";
 import child_process from "node:child_process"
-import { fileURLToPath } from "node:url";
 
 import inquirer from "inquirer";
 import chalk from "chalk";
@@ -13,19 +12,23 @@ import PackageFileMap from "./PackageFileMap.js";
 import { execCommandOption } from "./config/command.js";
 
 import {
+	// index
+	getDirname,
 	strAsAscll,
 	colorLog,
 	getEjsTemplate,
-	getPresetConfig,
-	setPresetConfig,
-	logPersetConfigText,
 	delNullLine,
 	isJSON,
 	objKeySort,
 	walkdirOpator,
-} from "./utils.js";
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+	// presetConfig
+	getPresetConfig,
+	setPresetConfig,
+	logPersetConfigText,
+} from "./utils/exports.js";
+
+const __dirname = getDirname(import.meta.url);
 const rse = (desc: string, p: string) => path.resolve(desc, p);
 const log = console.log;
 

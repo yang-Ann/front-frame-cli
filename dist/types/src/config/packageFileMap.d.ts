@@ -408,11 +408,6 @@ declare const _default: {
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
         };
-    }; /**
-     * from 表示模板源文件所在位置可以是指定的 (`/dist/src/template/${frame}/packages/xxx`) 或者是公共的 (`/dist/src/template/common/packages/xxx`)
-     * to 表示在项目的位置
-     *  字符串会自动拼接 (`${projectDir}/${to}/${from}`)
-     *  函数则会调用使用其返回值
-     * */
+    };
 };
 export default _default;

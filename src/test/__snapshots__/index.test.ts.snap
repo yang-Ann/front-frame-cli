@@ -126,23 +126,23 @@ exports[`config > getPackagesOptionByFrame > Vue 可选依赖 1`] = `
 `;
 
 exports[`utils > strAsAscll > 打印 ASCLL 1`] = `
-"   ____                   __    _   __           __      __    _   
- .' __ \\\\                 [  |  (_) [  |         / /     [  |  (_)  
-/ .'  \\\\ | ,--.   _ .--.   | |  __   | |.--.    / /.---.  | |  __   
-| | (_/ |\`'_\\\\ : [ \`.-. |  | | [  |  | '/'\`\\\\ \\\\ / // /'\`\\\\] | | [  |  
-\\\\ \`.__.'\\\\// | |, | | | |  | |  | |  |  \\\\__/ |/ / | \\\\__.  | |  | |  
- \`.___ .'\\\\'-;__/[___||__][___][___][__;.__.'/_/  '.___.'[___][___] 
-                                                                   "
+"    ___                          _              ___                                                  __    _   
+  .' ..]                        / |_          .' ..]                                                [  |  (_)  
+ _| |_  _ .--.   .--.   _ .--. \`| |-'______  _| |_  _ .--.  ,--.   _ .--..--.  .---.  ______  .---.  | |  __   
+'-| |-'[ \`/'\`\\\\]/ .'\`\\\\ \\\\[ \`.-. | | | |______|'-| |-'[ \`/'\`\\\\]\`'_\\\\ : [ \`.-. .-. |/ /__\\\\\\\\|______|/ /'\`\\\\] | | [  |  
+  | |   | |    | \\\\__. | | | | | | |,          | |   | |    // | |, | | | | | || \\\\__.,        | \\\\__.  | |  | |  
+ [___] [___]    '.__.' [___||__]\\\\__/         [___] [___]   \\\\'-;__/[___||__||__]'.__.'        '.___.'[___][___] 
+                                                                                                               "
 `;
 
 exports[`utils > walkdirOpator > walkdirOpator 读取 ejs 文件信息 1`] = `
 [
-  "D:/project/cli/assets/template/Vue/TypeScript/index.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/package.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/vite.config.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/src/App.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/src/main.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/src/index.ejs",
-  "D:/project/cli/assets/template/Vue/TypeScript/src/components/Count.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/index.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/package.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/vite.config.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/App.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/index.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/main.ejs",
+  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/components/Count.ejs",
 ]
 `;

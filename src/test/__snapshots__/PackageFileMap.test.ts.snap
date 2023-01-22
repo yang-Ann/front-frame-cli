@@ -3,43 +3,43 @@
 exports[`getSelectPackages > Native > Native 依赖映射 1`] = `
 [
   {
-    "from": "D:/project/assets/template/common/packages/Rollup/.babelrc",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Rollup/.babelrc",
     "to": "C:/project/.babelrc",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Rollup/.babelignore",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Rollup/.babelignore",
     "to": "C:/project/.babelignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Rollup/rollup.config.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Rollup/rollup.config.ejs",
     "to": "C:/project/rollup.config.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Vitest/vitest.config.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Vitest/vitest.config.ejs",
     "to": "C:/project/vitest.config.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Vitest/test/index.test.ts",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Vitest/test/index.test.ts",
     "to": "C:/project/src/test/index.test.ts",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Axios/request",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Axios/request",
     "to": "C:/project/src/request",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierrc.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierrc.cjs",
     "to": "C:/project/.prettierrc.cjs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierignore",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierignore",
     "to": "C:/project/.prettierignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintrc.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Eslint/.eslintrc.ejs",
     "to": "C:/project/.eslintrc.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintignore",
+    "from": "D:/project/front-frame-cli/assets/template/Native/packages/Eslint/.eslintignore",
     "to": "C:/project/.eslintignore",
   },
 ]
@@ -48,55 +48,55 @@ exports[`getSelectPackages > Native > Native 依赖映射 1`] = `
 exports[`getSelectPackages > React > React 依赖映射 1`] = `
 [
   {
-    "from": "D:/project/assets/template/common/packages/Reducx/store",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/Reducx/store",
     "to": "C:/project/src/store",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Reducx/react-redux.svg",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/Reducx/react-redux.svg",
     "to": "C:/project/src/assets/react-redux.svg",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Reducx/TestRedux.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/Reducx/TestRedux.ejs",
     "to": "C:/project/src/components/TestRedux.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/React-router/router",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/React-router/router",
     "to": "C:/project/src/router",
   },
   {
-    "from": "D:/project/assets/template/common/packages/React-router/NotFound.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/React-router/NotFound.ejs",
     "to": "C:/project/src/components/NotFound.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/React-router/Router.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/React-router/Router.ejs",
     "to": "C:/project/src/components/Router.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Axios/request",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Axios/request",
     "to": "C:/project/src/request",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierrc.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierrc.cjs",
     "to": "C:/project/.prettierrc.cjs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierignore",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierignore",
     "to": "C:/project/.prettierignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintrc.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/React/packages/Eslint/.eslintrc.ejs",
     "to": "C:/project/.eslintrc.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintignore",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Eslint/.eslintignore",
     "to": "C:/project/.eslintignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Tailwind CSS/tailwind.config.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Tailwind CSS/tailwind.config.cjs",
     "to": "C:/project/tailwind.config.cjs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Tailwind CSS/postcss.config.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Tailwind CSS/postcss.config.cjs",
     "to": "C:/project/postcss.config.cjs",
   },
 ]
@@ -105,59 +105,59 @@ exports[`getSelectPackages > React > React 依赖映射 1`] = `
 exports[`getSelectPackages > Vue > Vue 依赖映射 1`] = `
 [
   {
-    "from": "D:/project/assets/template/common/packages/Pinia/store",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Pinia/store",
     "to": "C:/project/src/store",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Pinia/pinia.svg",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Pinia/pinia.svg",
     "to": "C:/project/src/assets/pinia.svg",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Pinia/TestPinia.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Pinia/TestPinia.ejs",
     "to": "C:/project/src/components/TestPinia.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Vue-router/router",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Vue-router/router",
     "to": "C:/project/src/router",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Vue-router/RouterView.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Vue-router/RouterView.ejs",
     "to": "C:/project/src/components/RouterView.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Vue-router/NotFound.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Vue-router/NotFound.ejs",
     "to": "C:/project/src/components/NotFound.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/JSX(TSX)/TestTsx.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/JSX(TSX)/TestTsx.ejs",
     "to": "C:/project/src/components/TestTsx.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Axios/request",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Axios/request",
     "to": "C:/project/src/request",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierrc.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierrc.cjs",
     "to": "C:/project/.prettierrc.cjs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Prettier/.prettierignore",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Prettier/.prettierignore",
     "to": "C:/project/.prettierignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintrc.ejs",
+    "from": "D:/project/front-frame-cli/assets/template/Vue/packages/Eslint/.eslintrc.ejs",
     "to": "C:/project/.eslintrc.ejs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Eslint/.eslintignore",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Eslint/.eslintignore",
     "to": "C:/project/.eslintignore",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Tailwind CSS/tailwind.config.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Tailwind CSS/tailwind.config.cjs",
     "to": "C:/project/tailwind.config.cjs",
   },
   {
-    "from": "D:/project/assets/template/common/packages/Tailwind CSS/postcss.config.cjs",
+    "from": "D:/project/front-frame-cli/assets/template/common/packages/Tailwind CSS/postcss.config.cjs",
     "to": "C:/project/postcss.config.cjs",
   },
 ]

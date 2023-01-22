@@ -1,8 +1,8 @@
-import fs from "fs-extra";
 import { resolve, parse } from "node:path";
-import { fileURLToPath } from "node:url";
+import fs from "fs-extra";
 import packageFileMapConfig from "./config/packageFileMap.js";
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+import { getDirname } from "./utils/exports.js";
+const __dirname = getDirname(import.meta.url);
 // 管理依赖文件映射
 export default class PackageFileMap {
     projectDir;
@@ -18,10 +18,11 @@ export default class PackageFileMap {
     get fileMap() {
         return packageFileMapConfig.fileMap;
     }
-    // 获取选中的 package
-    getSelectPackages() {
+    // 获取选中的 package (参数兼容测试用例)
+    getSelectPackages(customDir = __dirname) {
         const { fileMap, frame, packages, projectDir, lang } = this;
-        const packagefromDir = resolve(__dirname, `../../assets/template/${frame}/packages`);
+        // 从 dist 目录开始, 所有是 ../../
+        const packagefromDir = resolve(customDir, `../../assets/template/${frame}/packages`);
         const result = [];
         // 框架依赖 + 通用依赖
         const allPackages = {
@@ -67,7 +68,7 @@ export default class PackageFileMap {
             result = resolve(fromDir, path);
             // 校验模板文件是否存在, 不存在则去公共目录中获取
             if (isFrom && !fs.existsSync(result)) {
-                result = resolve(__dirname, "../../assets/template/common/packages", path);
+                result = resolve(customDir, "../../assets/template/common/packages", path);
             }
             return result;
         }

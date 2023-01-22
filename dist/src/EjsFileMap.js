@@ -1,5 +1,5 @@
 import ejsFileMapConfig from "./config/ejsFileMap.js";
-import { getExtByLang } from "./utils.js";
+import { getExtByLang } from "./utils/exports.js";
 // 管理 EJS 文件模板映射
 export default class EjsFileMap {
     projectDir;

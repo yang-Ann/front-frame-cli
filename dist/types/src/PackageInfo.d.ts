@@ -6,30 +6,30 @@ export default class PackageInfo {
     private static get allPackageInfo();
     static get allScripts(): {
         Vue: {
-            [x: string]: string | ((lang: LanguageType) => string) | {
+            [x: string]: string | {
                 [x: string]: string;
-            } | {
+            } | ((lang: LanguageType) => string) | {
                 [x: string]: ((lang: LanguageType) => string) | ((lang: LanguageType, frame: FrameType) => string);
             };
         };
         React: {
-            [x: string]: string | ((lang: LanguageType) => string) | {
+            [x: string]: string | {
                 [x: string]: string;
-            } | {
+            } | ((lang: LanguageType) => string) | {
                 [x: string]: ((lang: LanguageType) => string) | ((lang: LanguageType, frame: FrameType) => string);
             };
         };
         Native: {
-            [x: string]: string | ((lang: LanguageType) => string) | {
+            [x: string]: string | {
                 [x: string]: string;
-            } | {
+            } | ((lang: LanguageType) => string) | {
                 [x: string]: ((lang: LanguageType) => string) | ((lang: LanguageType, frame: FrameType) => string);
             };
         };
         Common: {
-            [x: string]: string | ((lang: LanguageType) => string) | {
+            [x: string]: string | {
                 [x: string]: string;
-            } | {
+            } | ((lang: LanguageType) => string) | {
                 [x: string]: ((lang: LanguageType) => string) | ((lang: LanguageType, frame: FrameType) => string);
             };
         };

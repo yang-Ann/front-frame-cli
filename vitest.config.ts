@@ -7,6 +7,6 @@ export default defineConfig({
     exclude: [
       ...defaultExclude,
       "**/assets/**",
-    ]
+    ],
   },
 }); 

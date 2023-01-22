@@ -5,5 +5,5 @@ export default class PackageFileMap {
     packages: Array<PackagesType>;
     constructor(projectDir: string, lang: LanguageType, frame: FrameType, packages: Array<PackagesType>);
     private get fileMap();
-    getSelectPackages(): PackageFileMapType[];
+    getSelectPackages(customDir?: string): PackageFileMapType[];
 }

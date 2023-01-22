@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { getDirname } from "./utils/index.js";
 import fs from "fs-extra";
 
 import Create from "./Create.js";
@@ -10,7 +10,7 @@ import {
 } from "./test/const.js";
 
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const __dirname = getDirname(import.meta.url);
 const dirPath = resolve(__dirname, "../../aTestProject");
 
 if (fs.existsSync(dirPath)) {

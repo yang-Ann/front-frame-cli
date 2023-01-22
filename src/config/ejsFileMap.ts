@@ -1,4 +1,4 @@
-import { getExtByLang } from "../utils.js";
+import { getExtByLang } from "../utils/exports.js";
 import { defineConfigEjsFileMap } from "../types/defineConfig.js";
 
 export default defineConfigEjsFileMap({

@@ -6,7 +6,8 @@
     "license": "MIT",
     "type": "module",
     "bin": {
-        "ff": "./dist/bin/index.js"
+        "ff": "./dist/bin/index.js",
+        "tff": "./dist/bin/index.js"
     },
     "repository": {
         "type": "git",
