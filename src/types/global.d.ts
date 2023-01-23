@@ -33,16 +33,21 @@ type PackageFileMapType = {
 }
 
 type TemplateParamsType = {
-  language: LanguageType;
-  frame: FrameType;
-  packages: Array<PackagesType>;
-  git: boolean;
+  language: LanguageType,
+  frame: FrameType,
+  packages: Array<PackagesType>,
+  git: boolean,
+};
+
+type ejsDataType = Partial<TemplateParamsType> & { 
+  projectName?: string,
+  env: NodeJS.ProcessEnv,
 };
 
 type EjsOptionType = {
-  targetPath: string; // 读取路径
-  ejsData: Partial<TemplateParamsType> & { projectName?: string }; // 模板需要的数据
-  generatePath: string; // 写入的路径
-  transition?: (render: string) => string; // 数据转换
-  deleteOriginFile?: boolean; // 是否删除读取的文件
+  targetPath: string, // 读取路径
+  ejsData: ejsDataType, // 模板需要的数据
+  generatePath: string, // 写入的路径
+  transition?: (render: string) => string, // 数据转换
+  deleteOriginFile?: boolean, // 是否删除读取的文件
 };

@@ -271,6 +271,7 @@ export default class Create {
                         ejsData: {
                             ...templateParams,
                             projectName: lastDir,
+                            env: process.env,
                         },
                         generatePath: rse(projectDir, generateFileName),
                         // 写入的数据转换函数
