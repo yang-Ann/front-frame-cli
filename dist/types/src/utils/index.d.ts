@@ -1,3 +1,4 @@
+import type { ExecOptions } from "node:child_process";
 import figlet from "figlet";
 declare const getDirname: (url: string) => string;
 declare const strAsAscll: (msg: string, option?: figlet.Options) => Promise<string>;
@@ -9,4 +10,10 @@ declare const objKeySort: (obj: ObjectType, flog?: sortType) => ObjectType<any>;
 declare const getExtByLang: (lang: LanguageType, isJsx?: boolean) => ExtType;
 declare const isJSON: (text: string) => IsJSONRes;
 declare const isChildObject: (obj: ObjectType) => boolean;
-export { getDirname, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, delNullLine, objKeySort, getExtByLang, isJSON, isChildObject, };
+declare const execShell: (command: string, option?: {
+    encoding: "buffer" | null;
+} & ExecOptions) => Promise<{
+    stdout: string;
+    stderr: string;
+}>;
+export { getDirname, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };

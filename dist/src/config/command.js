@@ -25,6 +25,8 @@ const getPackagesOptionByFrame = (frame) => {
         { name: "Prettier" },
         { name: "Lodash" },
         { name: "Dayjs" },
+        { name: "Husky" },
+        { name: "Commitlint" },
     ];
     switch (frame) {
         case "Vue":

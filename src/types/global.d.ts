@@ -16,7 +16,7 @@ type ExtType = ".js" | ".jsx" | ".ts" | ".tsx";
 
 type sortType = "ASC" | "DESC";
 
-type LogColorType = "red" | "blue" | "brightBlue" | "yellow" | "green";
+type LogColorType = "red" | "blue" | "blueBright" | "yellow" | "green";
 
 type LanguageType = "JavaScript" | "TypeScript";
 type FrameType = "Vue" | "React" | "Native";
@@ -24,7 +24,7 @@ type BuildTool = "Vite";
 type VuePackages = "Element-Plus" | "Vue-router" | "Pinia" | "JSX(TSX)" | "Vueuse" | "Sass";
 type ReactPackages = "Ant-Design" | "Reducx" | "React-router" | "React-use";
 type NativePackages = "Rollup" | "Vitest" | "Fs-extra" | "Chalk" | "Log-symbols" | "Ora" | "Commander" | "Inquirer" | "Puppeteer-core";
-type CommonType = "Axios" | "Prettier" | "Eslint" | "Lodash" | "Dayjs" | "Tailwind CSS";
+type CommonType = "Axios" | "Prettier" | "Eslint" | "Lodash" | "Dayjs" | "Tailwind CSS" | "Commitlint" | "Husky";
 type PackagesType = VuePackages | ReactPackages | NativePackages | CommonType;
 
 type PackageFileMapType = {

@@ -1,5 +1,4 @@
 import path from "node:path";
-import child_process from "node:child_process"
 
 import inquirer from "inquirer";
 import chalk from "chalk";
@@ -23,6 +22,7 @@ import {
 	isJSON,
 	objKeySort,
 	walkdirOpator,
+	execShell,
 
 	// presetConfig
 	getPresetConfig,
@@ -81,7 +81,9 @@ export default class Create {
 				.copyPackageTemplate()
 				.renderEjsTemplate();
 
-			await	this.initGit();
+			await this.execShell();
+
+			// await	this.initGit();
 
 		} catch (error: unknown) {
 			if (error instanceof Error) {
@@ -388,29 +390,44 @@ export default class Create {
 		return this;
 	}
 
+	// 执行 shell 命令
+	public execShell(): Promise<void> {
+		return new Promise((resolve, reject) => {
+			const shells: Promise<any>[] = [this.initGit()];
+
+			// TODO
+			// const { packages } = this.templateParams as TemplateParamsType;
+			// if (packages.includes("Commitlint") || packages.includes("Husky")) {
+			// 	console.log("exec npx husky install");
+			// 	shells.push(execShell("npx husky install"));
+			// }
+
+			Promise.all(shells)
+				.then(() => resolve())
+				.catch(reject);
+		});
+	}
+
+
 	// 初始化 git
 	public initGit(): Promise<void> {
 		return new Promise((resolve, reject) => {
 			if (this.templateParams?.git) {
 				const { projectDir, isCurrent, lastDir } = this;
 				const command = `chcp 65001 && git init ${isCurrent ? "" : lastDir}`;
-				
-				child_process.exec(command, (error: child_process.ExecException | null) => {
-					
-					if (error) {
+				execShell(command)
+					.then(() => {
+						if (this.packageInfo) {
+							fs.writeFileSync(
+								rse(projectDir, "./.gitignore"), 
+								this.packageInfo.getIgnoreContent("Git")
+							);
+						}
+						resolve();
+					}).catch(error => {
 						log("child_process error: ", error.message);
 						reject();
-						return;
-					}
-
-					if (this.packageInfo) {
-						fs.writeFileSync(
-							rse(projectDir, "./.gitignore"), 
-							this.packageInfo.getIgnoreContent("Git")
-						);
-						resolve();
-					}
-				});
+					});
 			} else {
 				resolve();
 			}
@@ -419,15 +436,18 @@ export default class Create {
 
 	// 清理
 	public cleanup() {
-		const { isCurrent, lastDir, startTime } = this;
+		const { isCurrent, lastDir, startTime, templateParams } = this;
 		const countTime = Date.now() - startTime;
-		// ${chalk.hex("#00ce6d")(countTime + "ms")}
-
 		this.spinner?.succeed(`用时: ${countTime}ms`);
-		if (!isCurrent) colorLog("blue", `\n cd ${lastDir}`);
+		if (!isCurrent) colorLog("blueBright", `\n cd ${lastDir}`);
 
-		colorLog("blue", ` npm install`);
-		colorLog("blue", ` npm run dev\n`);
-		// log(`Wait for the browser to open automatically...\n`);
+		colorLog("blueBright", ` npm install`);
+		colorLog("blueBright", ` npm run dev\n`);
+
+		const { packages } = templateParams as TemplateParamsType;
+		if (packages.includes("Commitlint") || packages.includes("Husky")) {
+			const tip = chalk.bold(`手动执行 ${chalk.redBright("npx husky install")}`);
+			log(` tip: ${tip} 以使 \`commitlint\` 和 \`husky\` 生效`);
+		}
 	}
 }

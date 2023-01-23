@@ -1,10 +1,12 @@
-import figlet from "figlet";
-import chalk from "chalk";
-import fs from "fs-extra";
 import { EOL } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { exec } from "node:child_process";
+import type { ExecOptions, ExecException } from "node:child_process";
 
+import figlet from "figlet";
+import chalk, { ChalkInstance } from "chalk";
+import fs from "fs-extra";
 import walkdir from "walkdir";
 import ejs from "ejs";
 
@@ -38,9 +40,6 @@ const colorLog = (type: LogColorType, ...msg: string[]): void => {
 	switch (type) {
 		case "green":
 			log(chalk.hex("#00ce6d")(msg));
-			break;
-		case "brightBlue":
-			log(chalk.hex("#10cdff")(msg));
 			break;
 		default:
 			log(chalk[type](msg));
@@ -168,6 +167,23 @@ const isChildObject = (obj: ObjectType) : boolean => {
 	return flog;
 }
 
+
+
+// 执行 shell 命令
+const execShell = (
+	command: string,
+	option?: { encoding: "buffer" | null; } & ExecOptions,
+): Promise<{stdout: string, stderr: string}> => {
+	return new Promise((resolve, reject) => {
+		exec(
+			command,option || {},
+			(error: ExecException  | null, stdout: string, stderr: string) => {
+				if (error) reject(error);
+				resolve({stdout, stderr});
+		});
+	});
+}
+
 export {
 	getDirname,
 	strAsAscll,
@@ -177,6 +193,7 @@ export {
 	delNullLine,
 	objKeySort,
 	getExtByLang,
+	execShell,
 	isJSON,
 	isChildObject,
 };

@@ -26,6 +26,8 @@ declare const _default: {
             Lodash?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Dayjs?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Tailwind CSS"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Commitlint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Husky?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             required?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
         };
         React: {
@@ -54,6 +56,8 @@ declare const _default: {
             Lodash?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Dayjs?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Tailwind CSS"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Commitlint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Husky?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             required?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
         };
         Native: {
@@ -82,6 +86,8 @@ declare const _default: {
             Lodash?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Dayjs?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Tailwind CSS"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Commitlint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Husky?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             required?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
         };
         Common: {
@@ -110,6 +116,8 @@ declare const _default: {
             Lodash?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Dayjs?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Tailwind CSS"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Commitlint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Husky?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             required?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
         };
     };

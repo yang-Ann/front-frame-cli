@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# https://typicode.github.io/husky/#/?id=manual
+
+echo -e "\n\tpre-commit 钩子执行了\n"
+# exit 1 # 需要测试可以打开注释

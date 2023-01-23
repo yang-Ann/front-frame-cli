@@ -62,21 +62,27 @@ export default defineConfigPackageFileMap({
         },
         // 通用包文件映射
         commonPackageMap: {
-            "Axios": [
+            Axios: [
                 { from: "request", to: "src" }
             ],
-            "Prettier": [
+            Prettier: [
                 ".prettierrc.cjs",
                 ".prettierignore"
             ],
-            "Eslint": [
+            Eslint: [
                 ".eslintrc.ejs",
                 ".eslintignore"
+            ],
+            Husky: [".husky"],
+            // TODO 重复
+            Commitlint: [
+                "commitlint.config.cjs",
+                ".husky"
             ],
             "Tailwind CSS": [
                 "tailwind.config.cjs",
                 "postcss.config.cjs"
-            ]
+            ],
         },
     }
 });

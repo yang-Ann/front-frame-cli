@@ -101,6 +101,14 @@ declare const _default: {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
+            Commitlint?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Husky?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
         };
         React: {
             "Element-Plus"?: (string | {
@@ -200,6 +208,14 @@ declare const _default: {
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
             "Tailwind CSS"?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Commitlint?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Husky?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
@@ -305,6 +321,14 @@ declare const _default: {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
+            Commitlint?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Husky?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
         };
         commonPackageMap: {
             "Element-Plus"?: (string | {
@@ -404,6 +428,14 @@ declare const _default: {
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
             "Tailwind CSS"?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Commitlint?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Husky?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;

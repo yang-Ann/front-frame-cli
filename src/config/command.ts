@@ -30,6 +30,8 @@ const getPackagesOptionByFrame = (frame: FrameType): PackageListType => {
 		{ name: "Prettier" },
 		{ name: "Lodash" },
 		{ name: "Dayjs" },
+		{ name: "Husky" },
+		{ name: "Commitlint" },
 	];
 
 

@@ -1,9 +1,10 @@
-import figlet from "figlet";
-import chalk from "chalk";
-import fs from "fs-extra";
 import { EOL } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { exec } from "node:child_process";
+import figlet from "figlet";
+import chalk from "chalk";
+import fs from "fs-extra";
 import walkdir from "walkdir";
 import ejs from "ejs";
 const getDirname = (url) => {
@@ -34,9 +35,6 @@ const colorLog = (type, ...msg) => {
     switch (type) {
         case "green":
             log(chalk.hex("#00ce6d")(msg));
-            break;
-        case "brightBlue":
-            log(chalk.hex("#10cdff")(msg));
             break;
         default:
             log(chalk[type](msg));
@@ -150,4 +148,14 @@ const isChildObject = (obj) => {
     }
     return flog;
 };
-export { getDirname, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, delNullLine, objKeySort, getExtByLang, isJSON, isChildObject, };
+// 执行 shell 命令
+const execShell = (command, option) => {
+    return new Promise((resolve, reject) => {
+        exec(command, option || {}, (error, stdout, stderr) => {
+            if (error)
+                reject(error);
+            resolve({ stdout, stderr });
+        });
+    });
+};
+export { getDirname, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };

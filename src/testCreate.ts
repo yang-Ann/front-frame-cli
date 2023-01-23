@@ -25,8 +25,9 @@ const option: TemplateParamsType = {
   // frame: vuePackageInstance.frame,
   // packages: vuePackageInstance.packages,
   frame: nativePackageInstance.frame,
-  packages: ["Eslint", "Puppeteer-core", "Vitest"],
-  git: false,
+  packages: ["Commitlint", "Husky"],
+  // packages: ["Eslint", "Puppeteer-core", "Vitest"],
+  git: true,
 };
 
 createInstance.run(option);

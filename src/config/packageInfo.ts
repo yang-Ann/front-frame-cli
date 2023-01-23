@@ -2,7 +2,6 @@ import { EOL } from "node:os";
 import { defineConfigPackage } from "../types/defineConfig.js";
 
 // 管理 package.json 的 依赖 和 命令
-// TODO 类型
 const config = defineConfigPackage({
 
   // 所有依赖信息
@@ -118,7 +117,6 @@ const config = defineConfigPackage({
           "typescript": "^4.9.3",
           "@types/node": "^18.11.18",
         },
-        // TODO issues
         Eslint: {
           // 必须依赖
           dependencies: { "eslint": "^8.25.0" },
@@ -131,6 +129,14 @@ const config = defineConfigPackage({
               "@typescript-eslint/parser": "^5.47.1",
             }
           }
+        },
+        Husky: {
+          "husky": "^8.0.3",
+        },
+        Commitlint: {
+          "@commitlint/cli": "^17.4.2",
+          "@commitlint/config-conventional": "^17.4.2",
+          "husky": "^8.0.3", // TODO 重复
         },
         "Tailwind CSS": {
           "autoprefixer": "^10.4.13",
@@ -148,6 +154,7 @@ const config = defineConfigPackage({
       // React
 
       // Native
+      "nodemon",
       "vitest",
       "ts-node",
       "tslib",
@@ -160,6 +167,7 @@ const config = defineConfigPackage({
       "autoprefixer",
       "postcss",
       "tailwindcss",
+      "husky",
     ],
 
     // 开发依赖匹配规则, 匹配逻辑 `包名.indexOf(规则x) !== -1`
@@ -171,6 +179,7 @@ const config = defineConfigPackage({
       "eslint",
       "prettier",
       "plugin",
+      "@commitlint"
     ]
   },
 
@@ -179,7 +188,7 @@ const config = defineConfigPackage({
   */
   scriptInfo: {
     Vue: {
-      "dev": "vite",
+      dev: "vite",
       build: (lang: LanguageType) => {
         let result = "vue-tsc && vite build";
         if (lang === "JavaScript") {
@@ -187,21 +196,21 @@ const config = defineConfigPackage({
         }
         return result;
       },
-      "preview": "vite preview",
+      preview: "vite preview",
     },
     React: {
-      "dev": "vite",
-      "build": (lang: LanguageType) => {
+      dev: "vite",
+      build: (lang: LanguageType) => {
         let result = "tsc && vite build";
         if (lang === "JavaScript") {
           result = result.split(" && ")[1];
         }
         return result;
       },
-      "preview": "vite preview",
+      preview: "vite preview",
     },
     Native: {
-      "dev": (lang: LanguageType) => {
+      dev: (lang: LanguageType) => {
         let result = "node --loader ts-node/esm ./src/index.ts";
         if (lang === "JavaScript") {
           result = "node ./src/index.js";
