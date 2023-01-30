@@ -58,6 +58,7 @@ const getPackagesOptionByFrame = (frame) => {
                 { name: "Chalk" },
                 { name: "Log-symbols" },
                 { name: "Puppeteer-core" },
+                { name: "Playwright" },
                 // { name: "Commander" },
                 // { name: "Inquirer" },
             ];

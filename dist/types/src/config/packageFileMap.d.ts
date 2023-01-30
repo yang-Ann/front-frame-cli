@@ -77,6 +77,10 @@ declare const _default: {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
+            Playwright?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
             Axios?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
@@ -184,6 +188,10 @@ declare const _default: {
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
             "Puppeteer-core"?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Playwright?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
@@ -297,6 +305,10 @@ declare const _default: {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
+            Playwright?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
             Axios?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
@@ -404,6 +416,10 @@ declare const _default: {
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;
             "Puppeteer-core"?: (string | {
+                from: string;
+                to: string | ((lang: LanguageType) => string);
+            })[] | undefined;
+            Playwright?: (string | {
                 from: string;
                 to: string | ((lang: LanguageType) => string);
             })[] | undefined;

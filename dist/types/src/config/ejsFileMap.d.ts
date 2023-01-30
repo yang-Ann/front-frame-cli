@@ -20,6 +20,7 @@ declare const _default: {
             Commander?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Inquirer?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Puppeteer-core"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Playwright?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Axios?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Prettier?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Eslint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
@@ -50,6 +51,7 @@ declare const _default: {
             Commander?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Inquirer?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Puppeteer-core"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Playwright?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Axios?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Prettier?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Eslint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
@@ -80,6 +82,7 @@ declare const _default: {
             Commander?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Inquirer?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Puppeteer-core"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Playwright?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Axios?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Prettier?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Eslint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
@@ -110,6 +113,7 @@ declare const _default: {
             Commander?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Inquirer?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             "Puppeteer-core"?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
+            Playwright?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Axios?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Prettier?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;
             Eslint?: ObjectType<string | ((lang: LanguageType) => string) | null> | undefined;

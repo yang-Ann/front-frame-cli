@@ -59,6 +59,10 @@ export default defineConfigPackageFileMap({
             "Puppeteer-core": [
                 { from: "", to: "src" }
             ],
+            "Playwright": [
+                "playwright.config.ejs",
+                { from: "tests", to: "src" },
+            ]
         },
         // 通用包文件映射
         commonPackageMap: {

@@ -97,6 +97,7 @@ const config = defineConfigPackage({
           TypeScript: { "@types/fs-extra": "^11.0.1" }
         },
         "Puppeteer-core": { "puppeteer-core": "^19.5.2" },
+        "Playwright": { "@playwright/test": "^1.30.0" }
       }
     },
 
@@ -179,7 +180,8 @@ const config = defineConfigPackage({
       "eslint",
       "prettier",
       "plugin",
-      "@commitlint"
+      "@commitlint",
+      "@playwright",
     ]
   },
 
@@ -265,6 +267,18 @@ const config = defineConfigPackage({
           }
           return result;
         }
+      },
+      Playwright: {
+        "play:dev": (lang: LanguageType) => {
+          let result = "node --loader ts-node/esm ./src/Playwright/playwright.ts";
+          if (lang === "JavaScript") {
+            result = "node ./src/Playwright/playwright.js";
+          }
+          return result;
+        },
+        "codegen": () => "playwright codegen",
+        "play:test": () => "playwright test",
+        "play:help": () => "playwright --help",
       }
     }
   },

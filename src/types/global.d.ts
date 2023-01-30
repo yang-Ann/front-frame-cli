@@ -23,7 +23,7 @@ type FrameType = "Vue" | "React" | "Native";
 type BuildTool = "Vite";
 type VuePackages = "Element-Plus" | "Vue-router" | "Pinia" | "JSX(TSX)" | "Vueuse" | "Sass";
 type ReactPackages = "Ant-Design" | "Reducx" | "React-router" | "React-use";
-type NativePackages = "Rollup" | "Vitest" | "Fs-extra" | "Chalk" | "Log-symbols" | "Ora" | "Commander" | "Inquirer" | "Puppeteer-core";
+type NativePackages = "Rollup" | "Vitest" | "Fs-extra" | "Chalk" | "Log-symbols" | "Ora" | "Commander" | "Inquirer" | "Puppeteer-core" | "Playwright";
 type CommonType = "Axios" | "Prettier" | "Eslint" | "Lodash" | "Dayjs" | "Tailwind CSS" | "Commitlint" | "Husky";
 type PackagesType = VuePackages | ReactPackages | NativePackages | CommonType;
 
