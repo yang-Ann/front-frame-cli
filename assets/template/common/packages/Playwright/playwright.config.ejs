@@ -6,6 +6,20 @@ import { devices } from "@playwright/test";
 // 从文件中读取环境变量, https://github.com/motdotla/dotenv
 // require("dotenv").config();
 #BR#
+/**
+ * 详细的 API 日志
+ * Linux或者macOS
+ *  DEBUG=pw:api npm run test
+ * 
+ * Windows的 cmd.exe
+ *  set DEBUG=pw:api
+ *  npm run test
+ * 
+ * Windows的 PowerShell
+ *  $env:DEBUG="pw:api"
+ *  npm run test
+ */
+ 
 // https://playwright.dev/docs/test-configuration
 <% if (language === "TypeScript") { %>
 const config: PlaywrightTestConfig = {
