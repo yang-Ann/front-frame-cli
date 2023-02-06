@@ -1,6 +1,6 @@
 {
   "name": "front-frame-cli",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "一个简单的创建前端项目的cli",
   "author": "an <331536495@qq.com> (https://ann-yang.gitee.io/note-sites/)",
   "license": "MIT",

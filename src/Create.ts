@@ -334,8 +334,13 @@ export default class Create {
 											process.env.USERPROFILE || __dirname,
 											configDir, margePackageFile
 										);
-										const margePackage = fs.readJSONSync(margePackageFilePath);
-										const pack = merge(json, margePackage);
+										let pack;
+										if (fs.existsSync(margePackageFilePath)) {
+											const margePackage = fs.readJSONSync(margePackageFilePath);
+											pack = merge(json, margePackage);
+										} else {
+											pack = json;
+										}
 										const { dependencies, devDependencies } = this.packageInfo.parseDependencies();
 										pack.scripts = merge(
 											pack.scripts || {},

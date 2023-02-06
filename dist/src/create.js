@@ -284,8 +284,14 @@ export default class Create {
                                     if (this.packageInfo) {
                                         const { configDir, margePackageFile } = config;
                                         const margePackageFilePath = path.resolve(process.env.USERPROFILE || __dirname, configDir, margePackageFile);
-                                        const margePackage = fs.readJSONSync(margePackageFilePath);
-                                        const pack = merge(json, margePackage);
+                                        let pack;
+                                        if (fs.existsSync(margePackageFilePath)) {
+                                            const margePackage = fs.readJSONSync(margePackageFilePath);
+                                            pack = merge(json, margePackage);
+                                        }
+                                        else {
+                                            pack = json;
+                                        }
                                         const { dependencies, devDependencies } = this.packageInfo.parseDependencies();
                                         pack.scripts = merge(pack.scripts || {}, objKeySort(this.packageInfo.parseScripts()));
                                         pack.dependencies = merge(pack.dependencies || {}, objKeySort(dependencies));
