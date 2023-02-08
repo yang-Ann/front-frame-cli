@@ -4,6 +4,7 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import ora from "ora";
 import merge from "lodash.merge";
+import fg from "fast-glob";
 import PackageInfo from "./PackageInfo.js";
 import EjsFileMap from "./EjsFileMap.js";
 import PackageFileMap from "./PackageFileMap.js";
@@ -11,7 +12,7 @@ import config from "./config/index.js";
 import { execCommandOption } from "./config/command.js";
 import { 
 // index
-getDirname, strAsAscll, colorLog, getEjsTemplate, delNullLine, isJSON, objKeySort, walkdirOpator, execShell, 
+getDirname, strAsAscll, colorLog, getEjsTemplate, delNullLine, isJSON, objKeySort, execShell, 
 // presetConfig
 getPresetConfig, setPresetConfig, logPersetConfigText, } from "./utils/exports.js";
 const __dirname = getDirname(import.meta.url);
@@ -261,13 +262,13 @@ export default class Create {
     renderEjsTemplate() {
         return new Promise(async (resolve, reject) => {
             const { projectDir, templateParams, lastDir } = this;
-            const file = await walkdirOpator(projectDir, p => p.endsWith(".ejs"));
-            if (Array.isArray(file) && file.length) {
-                const ioPros = file.map(item => {
+            const files = await fg(["**/*.ejs"], { cwd: projectDir, dot: true });
+            if (Array.isArray(files) && files.length) {
+                const ioPros = files.map(item => {
                     const generateFileName = this.ejsFileMap?.getFileName(item);
                     // 解析 .ejs 文件
                     return getEjsTemplate({
-                        targetPath: item,
+                        targetPath: rse(projectDir, item),
                         ejsData: {
                             ...templateParams,
                             projectName: lastDir,

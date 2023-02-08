@@ -5,6 +5,7 @@ import chalk from "chalk";
 import fs from "fs-extra";
 import ora, { type Ora } from "ora";
 import merge from "lodash.merge";
+import fg from "fast-glob";
 
 import PackageInfo from "./PackageInfo.js";
 import EjsFileMap from "./EjsFileMap.js";
@@ -21,7 +22,6 @@ import {
 	delNullLine,
 	isJSON,
 	objKeySort,
-	walkdirOpator,
 	execShell,
 
 	// presetConfig
@@ -305,16 +305,16 @@ export default class Create {
 		return new Promise(async (resolve, reject) => {
 
 			const { projectDir, templateParams, lastDir } = this;
-			const file = await walkdirOpator(projectDir, p => p.endsWith(".ejs"));
+			const files = await fg(["**/*.ejs"], { cwd: projectDir, dot: true });
 
-			if (Array.isArray(file) && file.length) {
+			if (Array.isArray(files) && files.length) {
 
-				const ioPros = file.map(item => {
+				const ioPros = files.map(item => {
 					const generateFileName = this.ejsFileMap?.getFileName(item);
 
 					// 解析 .ejs 文件
 					return getEjsTemplate({
-						targetPath: item,
+						targetPath: rse(projectDir, item),
 						ejsData: {
 							...templateParams,
 							projectName: lastDir,

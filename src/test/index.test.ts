@@ -5,7 +5,6 @@ import {
   objKeySort,
   strAsAscll,
   getExtByLang,
-  walkdirOpator,
   isChildObject,
 } from "../utils/exports.js";
 import pkg from "../../package.json";
@@ -23,15 +22,6 @@ describe("utils", () => {
 
     expect(getExtByLang("TypeScript")).toMatchInlineSnapshot('".ts"');
     expect(getExtByLang("TypeScript", true)).toMatchInlineSnapshot('".tsx"');
-  });
-
-  test("walkdirOpator", async () => {
-    const path = resolve(__dirname, "../../assets/template/Vue/TypeScript");
-    const RE = /\\/g;
-    const files = await walkdirOpator(path, p => {
-      return p.endsWith(".ejs") ? p.replace(RE, "/") : false;
-    });
-    expect(files).toMatchSnapshot("walkdirOpator 读取 ejs 文件信息");
   });
 
   test("isChildObject", () => {

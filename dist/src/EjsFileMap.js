@@ -17,11 +17,7 @@ export default class EjsFileMap {
     getFileName(filePath) {
         const { projectDir, templateParams, fileMap } = this;
         const { frame, language, packages } = templateParams;
-        // 获取 .ejs 对应的文件名
-        const fileName = filePath.split(projectDir)[1] // 截取文件路径
-            .slice(1) // 不要根目录
-            .replace(/.ejs$/, "") // 替换 .ejs 后缀名
-            .replace(/\\/g, "/"); // 路径分隔符替换为 /
+        const fileName = filePath.replace(/.ejs$/, ""); // 替换 .ejs 后缀名
         if (!fileName) {
             throw new Error(`没有读取到文件: ${filePath}, ${projectDir}`);
         }

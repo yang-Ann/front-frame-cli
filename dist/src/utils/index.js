@@ -1,11 +1,9 @@
 import { EOL } from "node:os";
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { exec } from "node:child_process";
 import figlet from "figlet";
 import chalk from "chalk";
 import fs from "fs-extra";
-import walkdir from "walkdir";
 import ejs from "ejs";
 const getDirname = (url) => {
     return fileURLToPath(new URL(".", url));
@@ -40,39 +38,6 @@ const colorLog = (type, ...msg) => {
             log(chalk[type](msg));
             break;
     }
-};
-// 递归读取目录
-const walkdirOpator = (dir, // 目录
-filter, // 过滤器
-ignoreDirs = ["test", ".git", "node_modules"] // 忽略的目录
-) => {
-    return new Promise((resolve, reject) => {
-        const result = [];
-        const emitter = walkdir(dir, function (filePath) {
-            // 忽略
-            if (ignoreDirs.includes(path.basename(filePath))) {
-                this.ignore(filePath);
-            }
-            if (filter && typeof filter === "function") {
-                const res = filter(filePath);
-                if (typeof res === "boolean" && res) {
-                    result.push(filePath);
-                }
-                else if (typeof res === "string") {
-                    result.push(res);
-                }
-            }
-            else {
-                result.push(filePath);
-            }
-        });
-        emitter.on("end", () => {
-            resolve(result);
-        });
-        emitter.on("error", error => {
-            reject(error);
-        });
-    });
 };
 // 读取并填充ejs模板
 const getEjsTemplate = (option) => {
@@ -158,4 +123,4 @@ const execShell = (command, option) => {
         });
     });
 };
-export { getDirname, strAsAscll, colorLog, walkdirOpator, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };
+export { getDirname, strAsAscll, colorLog, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };

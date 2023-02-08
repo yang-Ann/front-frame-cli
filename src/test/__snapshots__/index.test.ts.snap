@@ -9,6 +9,9 @@ exports[`config > getPackagesOptionByFrame > Native 可选依赖 1`] = `
     "name": "Chalk",
   },
   {
+    "name": "Commitlint",
+  },
+  {
     "name": "Dayjs",
   },
   {
@@ -20,6 +23,9 @@ exports[`config > getPackagesOptionByFrame > Native 可选依赖 1`] = `
     "name": "Fs-extra",
   },
   {
+    "name": "Husky",
+  },
+  {
     "name": "Lodash",
   },
   {
@@ -27,6 +33,9 @@ exports[`config > getPackagesOptionByFrame > Native 可选依赖 1`] = `
   },
   {
     "name": "Ora",
+  },
+  {
+    "name": "Playwright",
   },
   {
     "name": "Prettier",
@@ -54,11 +63,17 @@ exports[`config > getPackagesOptionByFrame > React 可选依赖 1`] = `
     "name": "Axios",
   },
   {
+    "name": "Commitlint",
+  },
+  {
     "name": "Dayjs",
   },
   {
     "checked": true,
     "name": "Eslint",
+  },
+  {
+    "name": "Husky",
   },
   {
     "name": "Lodash",
@@ -87,6 +102,9 @@ exports[`config > getPackagesOptionByFrame > Vue 可选依赖 1`] = `
     "name": "Axios",
   },
   {
+    "name": "Commitlint",
+  },
+  {
     "name": "Dayjs",
   },
   {
@@ -96,6 +114,9 @@ exports[`config > getPackagesOptionByFrame > Vue 可选依赖 1`] = `
   {
     "checked": true,
     "name": "Eslint",
+  },
+  {
+    "name": "Husky",
   },
   {
     "name": "JSX(TSX)",
@@ -133,16 +154,4 @@ exports[`utils > strAsAscll > 打印 ASCLL 1`] = `
   | |   | |    | \\\\__. | | | | | | |,          | |   | |    // | |, | | | | | || \\\\__.,        | \\\\__.  | |  | |  
  [___] [___]    '.__.' [___||__]\\\\__/         [___] [___]   \\\\'-;__/[___||__||__]'.__.'        '.___.'[___][___] 
                                                                                                                "
-`;
-
-exports[`utils > walkdirOpator > walkdirOpator 读取 ejs 文件信息 1`] = `
-[
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/index.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/package.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/vite.config.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/App.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/index.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/main.ejs",
-  "D:/project/front-frame-cli/assets/template/Vue/TypeScript/src/components/Count.ejs",
-]
 `;
