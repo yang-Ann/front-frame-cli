@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import type { ExecOptions } from "node:child_process";
 import figlet from "figlet";
 declare const getDirname: (url: string) => string;

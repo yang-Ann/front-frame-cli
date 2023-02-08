@@ -58,7 +58,9 @@ const config = defineConfigPackage({
         Native: {
             dependencies: { "nodemon": "^2.0.20" },
             Packages: {
-                TypeScript: { "ts-node": "^10.9.1" },
+                TypeScript: {
+                    "esno": "^0.16.3",
+                },
                 Vitest: { "vitest": "^0.26.3" },
                 Rollup: {
                     dependencies: {
@@ -72,8 +74,8 @@ const config = defineConfigPackage({
                     },
                     TypeScript: {
                         "@rollup/plugin-typescript": "^8.5.0",
-                        "ts-node": "^10.9.1",
                         "tslib": "^2.4.0",
+                        "esno": "^0.16.3",
                     }
                 },
                 Commander: { "commander": "^9.4.0" },
@@ -145,7 +147,7 @@ const config = defineConfigPackage({
             // Native
             "nodemon",
             "vitest",
-            "ts-node",
+            "esno",
             "tslib",
             "ora",
             "log-symbols",
@@ -198,7 +200,7 @@ const config = defineConfigPackage({
         },
         Native: {
             dev: (lang) => {
-                let result = "node --loader ts-node/esm ./src/index.ts";
+                let result = "esno ./src/index.ts";
                 if (lang === "JavaScript") {
                     result = "node ./src/index.js";
                 }
@@ -242,7 +244,7 @@ const config = defineConfigPackage({
             },
             "Puppeteer-core": {
                 "puppeteer": (lang) => {
-                    let result = "node --loader ts-node/esm ./src/Puppeteer-core/index.ts";
+                    let result = "esno ./src/Puppeteer-core/index.ts";
                     if (lang === "JavaScript") {
                         result = "node ./src/Puppeteer-core/index.js";
                     }
@@ -251,7 +253,7 @@ const config = defineConfigPackage({
             },
             Playwright: {
                 "play:dev": (lang) => {
-                    let result = "node --loader ts-node/esm ./src/Playwright/playwright.ts";
+                    let result = "esno ./src/Playwright/playwright.ts";
                     if (lang === "JavaScript") {
                         result = "node ./src/Playwright/playwright.js";
                     }
