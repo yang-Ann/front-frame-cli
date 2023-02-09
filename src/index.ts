@@ -1,3 +1,4 @@
+import updateNotifier from "update-notifier";
 import { Command } from "commander";
 import chalk from "chalk";
 import logSymbols from "log-symbols";
@@ -23,6 +24,9 @@ const program = new Command();
 
 const __dirname = getDirname(import.meta.url);
 const pkg = fs.readJsonSync(path.resolve(__dirname, "../../package.json"));
+
+const notifier = updateNotifier({ pkg });
+notifier.notify();
 
 program
 	.name("ff")

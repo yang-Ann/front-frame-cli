@@ -1,6 +1,6 @@
-declare type ObjectStringType = ObjectType<string>;
-declare type getExtOrFileNameFnType = (lang: LanguageType) => string;
-declare type ConfigPackageFileMapType = {
+type ObjectStringType = ObjectType<string>;
+type getExtOrFileNameFnType = (lang: LanguageType) => string;
+type ConfigPackageFileMapType = {
     fileMap: {
         [p in FrameType | "commonPackageMap"]: {
             [p in PackagesType]?: Array<{
@@ -11,7 +11,7 @@ declare type ConfigPackageFileMapType = {
     };
 };
 export declare function defineConfigPackageFileMap(config: ConfigPackageFileMapType): ConfigPackageFileMapType;
-declare type EjsFileMapConfigType = {
+type EjsFileMapConfigType = {
     fileMap: {
         [p in FrameType | "Common"]: {
             [p in PackagesType | "required"]?: ObjectType<string | getExtOrFileNameFnType | null>;
@@ -19,7 +19,7 @@ declare type EjsFileMapConfigType = {
     };
 };
 export declare function defineConfigEjsFileMap(config: EjsFileMapConfigType): EjsFileMapConfigType;
-export declare type DependenciesType = {
+export type DependenciesType = {
     dependencies?: ObjectStringType;
     Packages?: {
         [k in PackagesType | BuildTool | LanguageType]?: ObjectStringType | {
@@ -31,10 +31,10 @@ export declare type DependenciesType = {
     TypeScript?: ObjectStringType;
     JavaScript?: ObjectStringType;
 };
-declare type ScriptFnType = Record<string, string | getExtOrFileNameFnType | ObjectStringType | {
+type ScriptFnType = Record<string, string | getExtOrFileNameFnType | ObjectStringType | {
     [k in string]: getExtOrFileNameFnType | ((lang: LanguageType, frame: FrameType) => string);
 }>;
-declare type fileInfoConfigType = {
+type fileInfoConfigType = {
     devDependenciesInfo: {
         [k in FrameType | "buildTool" | "Common" | "devDependenciesMap" | "devDependenciesRule"]: string | string[] | DependenciesType;
     };

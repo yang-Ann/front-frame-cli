@@ -1,6 +1,6 @@
 {
     "name": "front-frame-cli",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "一个简单的创建前端项目的cli",
     "author": "an <331536495@qq.com> (https://ann-yang.gitee.io/note-sites/)",
     "license": "MIT",
@@ -45,6 +45,7 @@
         "lodash.merge": "^4.6.2",
         "log-symbols": "^5.1.0",
         "ora": "^6.1.2",
+        "update-notifier": "^6.0.2",
         "vitest": "^0.23.4"
     },
     "devDependencies": {
@@ -54,6 +55,7 @@
         "@types/inquirer": "^9.0.1",
         "@types/lodash.merge": "^4.6.7",
         "@types/node": "^18.7.19",
+        "@types/update-notifier": "^6.0.2",
         "@typescript-eslint/eslint-plugin": "^5.48.0",
         "@typescript-eslint/parser": "^5.48.0",
         "eslint": "^8.31.0",
