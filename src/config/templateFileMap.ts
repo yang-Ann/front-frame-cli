@@ -1,7 +1,7 @@
 import { getExtByLang } from "../utils/exports.js";
-import { defineConfigEjsFileMap } from "../types/defineConfig.js";
+import { defineConfigTemplateFileMap } from "../types/defineConfig.js";
 
-export default defineConfigEjsFileMap({
+export default defineConfigTemplateFileMap({
   
   // ejs 文件映射(用于将 ejs模板文件转换为指定的文件)
   fileMap: {

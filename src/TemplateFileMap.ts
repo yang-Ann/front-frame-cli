@@ -1,8 +1,8 @@
-import ejsFileMapConfig from "./config/ejsFileMap.js";
+import templateFileMapConfig from "./config/templateFileMap.js";
 import { getExtByLang } from "./utils/exports.js";
 
 // 管理 EJS 文件模板映射
-export default class EjsFileMap {
+export default class TemplateFileMap {
 
   constructor(
     public projectDir: string,
@@ -13,7 +13,7 @@ export default class EjsFileMap {
   }
 
   private get fileMap() {
-    return ejsFileMapConfig.fileMap;
+    return templateFileMapConfig.fileMap;
   }
 
   // 查询文件

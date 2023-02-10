@@ -1,4 +1,4 @@
-export default class EjsFileMap {
+export default class TemplateFileMap {
     projectDir: string;
     lang: LanguageType;
     templateParams: TemplateParamsType;

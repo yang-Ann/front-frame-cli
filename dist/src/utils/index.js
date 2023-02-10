@@ -1,12 +1,32 @@
 import { EOL } from "node:os";
 import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 import { exec } from "node:child_process";
+import updateNotifier from "update-notifier";
 import figlet from "figlet";
 import chalk from "chalk";
 import fs from "fs-extra";
 import ejs from "ejs";
+const cached = (fn) => {
+    const cache = Object.create(null);
+    return (...pars) => {
+        const key = pars[0].toString();
+        const hit = cache[key];
+        return hit || (cache[key] = fn(...pars));
+    };
+};
 const getDirname = (url) => {
     return fileURLToPath(new URL(".", url));
+};
+const getPackageJson = cached(() => {
+    const __dirname = getDirname(import.meta.url);
+    const pkg = fs.readJsonSync(resolve(__dirname, "../../package.json"));
+    return pkg;
+});
+const updateTip = () => {
+    const pkg = getPackageJson("PACKAGE.JSON");
+    const notifier = updateNotifier({ pkg: pkg });
+    notifier.notify();
 };
 // 转换为 ASCII
 const strAsAscll = (msg, option) => {
@@ -123,4 +143,4 @@ const execShell = (command, option) => {
         });
     });
 };
-export { getDirname, strAsAscll, colorLog, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };
+export { updateTip, getDirname, getPackageJson, strAsAscll, colorLog, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };

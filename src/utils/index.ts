@@ -1,16 +1,41 @@
 import { EOL } from "node:os";
 import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 import { exec } from "node:child_process";
 import type { ExecOptions, ExecException } from "node:child_process";
 
+import updateNotifier, { type Package } from "update-notifier";
 import figlet from "figlet";
 import chalk from "chalk";
 import fs from "fs-extra";
 import ejs from "ejs";
 
 
+// 缓存纯函数结果
+type cachedFunc = (...any: any[]) => any;
+const cached = (fn: cachedFunc): cachedFunc => {
+	const cache = Object.create(null);
+	return (...pars: any[]) => {
+		const key = pars[0].toString();
+		const hit = cache[key];
+		return hit || (cache[key] = fn(...pars));
+	};
+};
+
 const getDirname = (url: string): string => {
 	return fileURLToPath(new URL(".", url));
+}
+
+const getPackageJson = cached((): ObjectType => {
+	const __dirname = getDirname(import.meta.url);
+	const pkg = fs.readJsonSync(resolve(__dirname, "../../package.json"));
+	return pkg;
+});
+
+const updateTip = () => {
+	const pkg = getPackageJson("PACKAGE.JSON");
+	const notifier = updateNotifier({ pkg: (pkg as Package) });
+	notifier.notify();
 }
 
 // 转换为 ASCII
@@ -145,7 +170,9 @@ const execShell = (
 }
 
 export {
+	updateTip,
 	getDirname,
+	getPackageJson,
 	strAsAscll,
 	colorLog,
 	getEjsTemplate,

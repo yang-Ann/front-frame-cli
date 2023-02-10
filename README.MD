@@ -13,6 +13,9 @@ npm i front-frame-cli -g
 # 创建项目
 ff c projectName
 
+# 根据预设配置创建项目
+ff c projectName -p presetName
+
 # 查看预设方案
 ff ls
 

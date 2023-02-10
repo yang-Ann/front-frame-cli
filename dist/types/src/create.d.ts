@@ -1,6 +1,6 @@
 import { type Ora } from "ora";
 import PackageInfo from "./PackageInfo.js";
-import EjsFileMap from "./EjsFileMap.js";
+import TemplateFileMap from "./TemplateFileMap.js";
 import PackageFileMap from "./PackageFileMap.js";
 export default class Create {
     projectDir: string;
@@ -10,7 +10,7 @@ export default class Create {
     isCover: boolean;
     startTime: number;
     spinner: Ora;
-    ejsFileMap: EjsFileMap | null;
+    templateFileMap: TemplateFileMap | null;
     packageInfo: PackageInfo | null;
     packageFileMap: PackageFileMap | null;
     constructor(projectDir: string, isCurrent: boolean);

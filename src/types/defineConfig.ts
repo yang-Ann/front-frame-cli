@@ -26,7 +26,7 @@ type EjsFileMapConfigType = {
   }
 }
 
-export function defineConfigEjsFileMap(config: EjsFileMapConfigType) {
+export function defineConfigTemplateFileMap(config: EjsFileMapConfigType) {
   return config;
 }
 

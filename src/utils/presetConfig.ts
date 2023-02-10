@@ -57,18 +57,6 @@ const getPersetConfigText = (): PersetConfigTextType[] => {
 	return result;
 }
 
-// 打印预设内容
-const logPersetConfigText = () => {
-	const texts = getPersetConfigText();
-	if (texts.length) {
-		console.log(`\n从 ${optionDir} 中读取到的预设有: \n`);
-		texts.map(e => {
-			const { name, language, packages, git } = e;
-			console.log(`\t${chalk.hex("#2ebc41").bold(name)}: language: ${language}, packages: [${packages.join(", ")}], git: ${git}\n`);
-		});
-	}
-}
-
 // 设置预设
 const setPresetConfig = (key: string, value: TemplateParamsType) => {
 	const presetAllOption = getPresetConfig();
@@ -93,10 +81,11 @@ const delPresetConfig = (key: string): boolean => {
 };
 
 export {
+	optionDir,
+	presetPath,
   createOptionDir,
 	getPresetConfig,
 	getPersetConfigText,
-	logPersetConfigText,
 	setPresetConfig,
 	delPresetConfig,
 }

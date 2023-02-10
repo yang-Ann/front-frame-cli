@@ -1,6 +1,9 @@
 import type { ExecOptions } from "node:child_process";
 import figlet from "figlet";
+type cachedFunc = (...any: any[]) => any;
 declare const getDirname: (url: string) => string;
+declare const getPackageJson: cachedFunc;
+declare const updateTip: () => void;
 declare const strAsAscll: (msg: string, option?: figlet.Options) => Promise<string>;
 declare const colorLog: (type: LogColorType, ...msg: string[]) => void;
 declare const getEjsTemplate: (option: EjsOptionType) => Promise<void>;
@@ -15,4 +18,4 @@ declare const execShell: (command: string, option?: {
     stdout: string;
     stderr: string;
 }>;
-export { getDirname, strAsAscll, colorLog, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };
+export { updateTip, getDirname, getPackageJson, strAsAscll, colorLog, getEjsTemplate, delNullLine, objKeySort, getExtByLang, execShell, isJSON, isChildObject, };

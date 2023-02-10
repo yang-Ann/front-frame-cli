@@ -18,7 +18,7 @@ type EjsFileMapConfigType = {
         };
     };
 };
-export declare function defineConfigEjsFileMap(config: EjsFileMapConfigType): EjsFileMapConfigType;
+export declare function defineConfigTemplateFileMap(config: EjsFileMapConfigType): EjsFileMapConfigType;
 export type DependenciesType = {
     dependencies?: ObjectStringType;
     Packages?: {

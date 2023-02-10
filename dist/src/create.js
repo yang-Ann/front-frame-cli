@@ -6,7 +6,7 @@ import ora from "ora";
 import merge from "lodash.merge";
 import fg from "fast-glob";
 import PackageInfo from "./PackageInfo.js";
-import EjsFileMap from "./EjsFileMap.js";
+import TemplateFileMap from "./TemplateFileMap.js";
 import PackageFileMap from "./PackageFileMap.js";
 import config from "./config/index.js";
 import { execCommandOption } from "./config/command.js";
@@ -26,7 +26,7 @@ export default class Create {
     isCover;
     startTime;
     spinner;
-    ejsFileMap;
+    templateFileMap;
     packageInfo;
     packageFileMap;
     constructor(projectDir, isCurrent) {
@@ -38,7 +38,7 @@ export default class Create {
         this.templateParams = null; // 模板参数
         this.isCover = false; // 是否覆盖目录
         this.spinner = ora("waiting..."); // 终端loading
-        this.ejsFileMap = null; // 解析 ejs 文件实例
+        this.templateFileMap = null; // 解析 ejs 文件实例
         this.packageInfo = null; // 解析 package.json 实例
         this.packageFileMap = null; // 解析 package 实例
         this.startTime = -1; // 记录时间
@@ -226,7 +226,7 @@ export default class Create {
     initInstance() {
         const { projectDir, templateParams } = this;
         const { language, packages, frame } = templateParams;
-        this.ejsFileMap = new EjsFileMap(projectDir, language, templateParams);
+        this.templateFileMap = new TemplateFileMap(projectDir, language, templateParams);
         this.packageFileMap = new PackageFileMap(projectDir, language, frame, packages);
         this.packageInfo = new PackageInfo(language, frame, packages);
         return this;
@@ -265,7 +265,7 @@ export default class Create {
             const files = await fg(["**/*.ejs"], { cwd: projectDir, dot: true });
             if (Array.isArray(files) && files.length) {
                 const ioPros = files.map(item => {
-                    const generateFileName = this.ejsFileMap?.getFileName(item);
+                    const generateFileName = this.templateFileMap?.getFileName(item);
                     // 解析 .ejs 文件
                     return getEjsTemplate({
                         targetPath: rse(projectDir, item),
