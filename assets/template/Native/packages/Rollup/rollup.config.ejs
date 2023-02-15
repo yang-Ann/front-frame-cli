@@ -6,6 +6,7 @@ import terser from "@rollup/plugin-terser";
 import replace from "@rollup/plugin-replace";
 <% if (language === "TypeScript") { %>
 import typescript from "@rollup/plugin-typescript";
+import { defineConfig } from "rollup";
 <% } %>
 #BR#
 import pkg from "./package.json";
@@ -14,7 +15,11 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 #BR#
 
 // https://www.rollupjs.com/
+<% if (language === "TypeScript") { %>
+export default defineConfig({
+<% } else { %>
 export default {
+<% } %>
 <% if (language === "TypeScript") { %>  
   input: resolve(__dirname, "./src/index.ts"),
 <% } else { %>
@@ -55,4 +60,8 @@ export default {
       __VERSION__: pkg.version, 
     }),
   ],
-}
+<% if (language === "TypeScript") { %>
+});
+<% } else { %>
+};
+<% } %>

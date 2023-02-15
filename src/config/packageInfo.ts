@@ -78,6 +78,7 @@ const config = defineConfigPackage({
             "@rollup/plugin-replace": "^4.0.0",
             "@rollup/plugin-terser": "^0.3.0",
             "@babel/core": "^7.19.1",
+            "@types/babel__core": "^7.1.19",
             "@babel/preset-env": "^7.19.4",
           },
           TypeScript: {

@@ -1,6 +1,6 @@
 import type { ExecOptions } from "node:child_process";
 import figlet from "figlet";
-type cachedFunc = (...any: any[]) => any;
+declare type cachedFunc = (...any: any[]) => any;
 declare const getDirname: (url: string) => string;
 declare const getPackageJson: cachedFunc;
 declare const updateTip: () => void;

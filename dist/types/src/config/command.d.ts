@@ -1,4 +1,4 @@
-type PackageListType = Array<{
+declare type PackageListType = Array<{
     name: string;
     checked?: boolean;
 }>;
