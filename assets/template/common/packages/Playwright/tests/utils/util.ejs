@@ -1,0 +1,48 @@
+// 获取日期
+const getDate = (timeStr = "YYYY-MM-DD", time = new Date()) => {
+	<% if (language === "TypeScript") { %>
+	const getVal = (val: number, n = 2, s = "0") => val.toString().padStart(n, s);
+	<% } else { %>
+	const getVal = (val, n = 2, s = "0") => val.toString().padStart(n, s);
+	<% } %>
+	#BR#
+	const week = ["日", "一", "二", "三", "四", "五", "六"];
+	const timeObj = {
+		YYYY: time.getFullYear().toString(),
+		MM: getVal(time.getMonth() + 1),
+		M: (time.getMonth() + 1).toString(),
+		DD: getVal(time.getDate()),
+		D: time.getDate().toString(),
+		hh: getVal(time.getHours()),
+		h: time.getHours().toString(),
+		mm: getVal(time.getMinutes()),
+		m: time.getMinutes().toString(),
+		ss: getVal(time.getSeconds()),
+		s: time.getSeconds().toString(),
+		sss: getVal(time.getMilliseconds(), 3),
+		w: week[time.getDay()],
+		d: time.getDay().toString() // 一周中的第几天, 0是周日
+	};
+	#BR#
+	let retStr = timeStr.slice();
+	// 这里把位数长的排前面(避免匹配错乱)
+	const keys = Object.keys(timeObj).sort((a, b) => b.length - a.length);
+	#BR#
+	for (let i = 0; i < keys.length; i++) {
+		const key = keys[i];
+		if (Object.hasOwnProperty.call(timeObj, key)) {
+			<% if (language === "TypeScript") { %>
+			const val = timeObj[key as keyof typeof timeObj];
+			<% } else { %>
+			const val = timeObj[key];
+			<% } %>
+			if (retStr.indexOf(key) !== -1) {
+				retStr = retStr.replace(key, val);
+			}
+		}
+	}
+#BR#
+	return retStr;
+};
+#BR#
+export { getDate };

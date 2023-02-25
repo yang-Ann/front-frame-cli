@@ -1,0 +1,63 @@
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+#BR#
+import { getDate } from "./util.js";
+#BR#
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+#BR#
+// const loggerDir = resolve(__dirname, "../logger");
+const loggerDir = resolve(__dirname, getDate("../logger/YYYY/DD/MM"));
+if (!fs.existsSync(loggerDir)) fs.mkdirSync(loggerDir, { recursive: true });
+#BR#
+const imgErrDir = resolve(loggerDir, "images");
+if (!fs.existsSync(imgErrDir)) fs.mkdirSync(imgErrDir);
+#BR#
+const errorStack = resolve(loggerDir, "./errorStack.log");
+if (!fs.existsSync(errorStack)) fs.writeFileSync(errorStack, "");
+#BR#
+const operPath = resolve(loggerDir, "./operationalProcess.log");
+if (!fs.existsSync(operPath)) fs.writeFileSync(operPath, "");
+#BR#
+<% if (language === "TypeScript") { %>
+// logger 相关配置
+type LoggerType = {
+  loggerDir: string;
+  imgErrDir: string;
+  errorStack: string;
+  operPath: string;
+  clearOperPath: () => void;
+  writeOperInfo: (msg: string, isLog?: boolean) => void;
+};
+<% } %>
+#BR#
+<% if (language === "TypeScript") { %>
+const logger: LoggerType = {
+<% } else { %>
+const logger = {
+<% } %>
+  loggerDir,
+  imgErrDir,
+  errorStack,
+  operPath,
+  // 清空操作日志
+  clearOperPath: () => {
+    if (fs.existsSync(operPath)) fs.truncateSync(operPath);
+  },
+  // 操作步骤写入
+  writeOperInfo: (msg: string, isLog = true): void => {
+    const d = getDate("YYYY-MM-DD hh:mm:ss");
+    const logText = `${d} ${msg}\n`;
+    if (!fs.existsSync(operPath)) fs.writeFileSync(operPath, "");
+    <% if (language === "TypeScript") { %>
+    fs.appendFile(operPath, logText, (err: NodeJS.ErrnoException | null) => {
+    <% } else { %>
+    fs.appendFile(operPath, logText, err => {
+    <% } %>
+      if (err) console.error("文件写入失败");
+    });
+    if (isLog) console.log(logText);
+  }
+};
+
+export default logger;

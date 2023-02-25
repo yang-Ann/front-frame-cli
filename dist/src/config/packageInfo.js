@@ -59,7 +59,8 @@ const config = defineConfigPackage({
             dependencies: { "nodemon": "^2.0.20" },
             Packages: {
                 TypeScript: {
-                    "esno": "^0.16.3",
+                    // "tsx": "^3.12.3", // BUG __name is not defined
+                    "ts-node": "^10.9.1"
                 },
                 Vitest: { "vitest": "^0.26.3" },
                 Rollup: {
@@ -76,7 +77,8 @@ const config = defineConfigPackage({
                     TypeScript: {
                         "@rollup/plugin-typescript": "^8.5.0",
                         "tslib": "^2.4.0",
-                        "esno": "^0.16.3",
+                        // "tsx": "^3.12.3",
+                        "ts-node": "^10.9.1"
                     }
                 },
                 Commander: { "commander": "^9.4.0" },
@@ -148,7 +150,7 @@ const config = defineConfigPackage({
             // Native
             "nodemon",
             "vitest",
-            "esno",
+            "tsx",
             "tslib",
             "ora",
             "log-symbols",
@@ -201,7 +203,8 @@ const config = defineConfigPackage({
         },
         Native: {
             dev: (lang) => {
-                let result = "esno ./src/index.ts";
+                // let result = "tsx ./src/index.ts";
+                let result = "node --loader ts-node/esm ./src/index.ts";
                 if (lang === "JavaScript") {
                     result = "node ./src/index.js";
                 }
@@ -245,7 +248,8 @@ const config = defineConfigPackage({
             },
             "Puppeteer-core": {
                 "puppeteer": (lang) => {
-                    let result = "esno ./src/Puppeteer-core/index.ts";
+                    // let result = "tsx ./src/Puppeteer-core/index.ts";
+                    let result = "node --loader ts-node/esm ./src/Puppeteer-core/index.ts";
                     if (lang === "JavaScript") {
                         result = "node ./src/Puppeteer-core/index.js";
                     }
@@ -254,9 +258,10 @@ const config = defineConfigPackage({
             },
             Playwright: {
                 "play:dev": (lang) => {
-                    let result = "esno ./src/Playwright/playwright.ts";
+                    // let result = "tsx ./src/tests/playwright.ts";
+                    let result = "node --loader ts-node/esm ./src/tests/playwright.ts";
                     if (lang === "JavaScript") {
-                        result = "node ./src/Playwright/playwright.js";
+                        result = "node ./src/tests/playwright.js";
                     }
                     return result;
                 },

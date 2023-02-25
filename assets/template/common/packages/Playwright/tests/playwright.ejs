@@ -1,55 +1,116 @@
-import { chromium, devices } from "@playwright/test";
+import * as fs from "node:fs";
+import { sep } from "node:path";
 #BR#
 // https://playwright.dev/docs/library
+import { chromium, devices } from "@playwright/test";
+<% if (language === "TypeScript") { %>
+import type { Browser, Page, BrowserContext } from "@playwright/test";
+<% } %>
+#BR#
+import logger from "./utils/logger.js";
+import { getDate } from "./utils/util.js";
+const { loggerDir, errorStack, imgErrDir, writeOperInfo, clearOperPath } = logger;
+#BR#
+// 清空操作日志
+clearOperPath();
+#BR#
+<% if (language === "TypeScript") { %>
+let browser: Browser | null = null;
+let page: Page | null = null;
+let context: BrowserContext | null = null;
+<% } else { %>
+let browser = null;
+let page = null;
+let context = null;
+<% } %>
 #BR#
 (async () => {
-  #BR#
-  const browser = await chromium.launch({
-    headless: false, // 关闭无头模板
-    slowMo: 100, // 操作放慢 100 ms
-  });
-  #BR#
-  // 上下文
-  const context = await browser.newContext();
-  // 指定设备
-  // const context = await browser.newContext(devices["iPhone 13 landscape"]);
-  #BR#
-  // 新窗口
-  const page = await context.newPage();
-  #BR#
-  // 拦截网络请求
-  await page.route('**/*', route => {
-    const resType = route.request().resourceType();
-    // 图片则中断请求
-    return resType === "image" ? route.abort() : route.continue();
-  });
-  #BR#
-  // 打开 url 地址
-  await page.goto("https://www.baidu.com/", {
-    waitUntil: "networkidle" // 网络空闲时
-  });
-  #BR#
-  // 点击指定选择器元素
-  await page.locator("#kw").click();
-  #BR#
-  // 填充字符串到指定元素
-  await page.locator("#kw").fill("hello world");
-  #BR#
-  // 点击指定规则的元素
-  await page.getByRole("button", { name: "百度一下" }).click();
-  #BR#
-  // 等待 1000
-  await page.waitForTimeout(1000);
-  #BR#
-  // 截取屏幕
-  await page.screenshot({ 
-    path: `${Date.now()}.png`, // 路径
-    fullPage: true // 截取全部内容
-  });
-  // 截取元素
-  await page.locator("#su").screenshot({ path: "百度一下_button.png" });
-  #BR#
-  // 释放资源
-  await context.close();
-  await browser.close();
+  try {
+    #BR#
+    const startTime = Date.now();
+    #BR#
+    writeOperInfo("launch browser");
+    browser = await chromium.launch({
+      headless: false, // 关闭无头模板
+      slowMo: 100, // 操作放慢 100 ms
+    });
+    #BR#
+    // 上下文
+    writeOperInfo("newContext");
+    context = await browser.newContext();
+    // 指定设备
+    // context = await browser.newContext(devices["iPhone 13 landscape"]);
+    #BR#
+    // 新窗口
+    writeOperInfo("newPage");
+    page = await context.newPage();
+    #BR#
+    // 拦截网络请求
+    await page.route('**/*', route => {
+      const resType = route.request().resourceType();
+      // 图片则中断请求
+      return resType === "image" ? route.abort() : route.continue();
+    });
+    #BR#
+    // 打开 url 地址
+    writeOperInfo(`goto https://www.baidu.com/`);
+    await page.goto("https://www.baidu.com/", {
+      waitUntil: "networkidle" // 网络空闲时
+    });
+    #BR#
+    // 点击指定选择器元素
+    writeOperInfo(`click #kw`);
+    await page.locator("#kw").click();
+    #BR#
+    // 填充字符串到指定元素
+    writeOperInfo(`fill "hello world" into the #kw`);
+    await page.locator("#kw").fill("hello world");
+    #BR#
+    // 点击指定规则的元素
+    writeOperInfo(`click button`);
+    await page.getByRole("button", { name: "百度一下" }).click();
+    #BR#
+    // 等待 1000
+    writeOperInfo(`waitForTimeout 1000`);
+    await page.waitForTimeout(1000);
+    #BR#
+    // 截取屏幕
+    writeOperInfo(`screenshot fullPage`);
+    await page.screenshot({ 
+      path: `${loggerDir}/baidu.png`, // 路径
+      fullPage: true // 截取全部内容
+    });
+    // 截取元素
+    writeOperInfo(`screenshot #su`);
+    await page.locator("#su").screenshot({ path: `${loggerDir}/百度一下_button.png` });
+    #BR#
+    const numTime = Date.now() - startTime;
+    writeOperInfo(`总用时: ${numTime.toFixed(2)}ms`);
+    #BR#
+    // 释放资源
+    await context.close();
+    await browser.close();
+<% if (language === "TypeScript") { %>
+  } catch (error: unknown) {
+    if (error instanceof Error) {  
+<% } else { %>
+  } catch (error) {
+<% } %>
+      writeOperInfo(`发生错误, 请查看 ${errorStack}`);
+      // 报错图片路径
+      const imgErrPath = `${imgErrDir + sep + Date.now()}.png`;
+      // 记录错误栈信息
+      const d = getDate("YYYY-MM-DD hh:mm:ss");
+      fs.writeFileSync(errorStack, `${d} >>> ${imgErrPath}\r\n${error.stack}`);
+      
+      // 保存网页为图片
+      if (page) await page.screenshot({ path: imgErrPath });
+<% if (language === "TypeScript") { %>
+    }
+<% } %>
+  } finally {
+    // 释放资源
+    if (context) await context.close();
+    if (browser) await browser.close();
+  }
 })();
